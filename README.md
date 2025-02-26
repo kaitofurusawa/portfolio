@@ -1,5 +1,7 @@
+ER図URL：https://dbdiagram.io/d/67bdcb3b263d6cf9a0674ffd
+
 figmaURL:https://www.figma.com/design/tZwU1U611cGRn0WbtVfSAF/%E4%BD%95%E5%88%87%E3%82%8B%E3%83%89%E3%83%83%E3%83%88%E3%82%B3%E3%83%A0?node-id=7108-15104&t=OEifWO3lGTNZT6yI-1
-※矢印を追加しました。
+※矢印を追加しました。-
 
 ■サービス概要
 麻雀の「何切る問題」を投稿する掲示板アプリです。
