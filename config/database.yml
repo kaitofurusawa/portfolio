@@ -20,3 +20,6 @@ production:
   username: postgres
   password: <%= ENV['DATABASE_PASSWORD'] %>
   host: <%= ENV['DATABASE_HOST'] %>
+  cable:
+    adapter: postgresql
+    url: <%= ENV["DATABASE_URL"] %>
