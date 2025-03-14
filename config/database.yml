@@ -15,11 +15,11 @@ test:
   database: portfolio_test
 
 production:
-  <<: *default
-  database: portfolio_production
-  username: postgres
-  password: <%= ENV['DATABASE_PASSWORD'] %>
-  host: <%= ENV['DATABASE_HOST'] %>
+  primary:
+    adapter: postgresql
+    url: <%= ENV["DATABASE_URL"] %>
+    pool: 5
+
   cable:
     adapter: postgresql
     url: <%= ENV["DATABASE_URL"] %>
