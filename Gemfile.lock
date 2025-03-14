@@ -347,7 +347,7 @@ DEPENDENCIES
   pg (~> 1.5)
   propshaft
   pry-rails
-  puma (>= 6.0)
+  puma (~> 6.6)
   rails (~> 8.0.2)
   rubocop-rails-omakase
   selenium-webdriver

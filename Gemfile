@@ -11,8 +11,8 @@ gem "propshaft"
 # PostgreSQL
 gem "pg", "~> 1.5"
 
-# Web サーバー（Puma 6 以上）
-gem "puma", ">= 6.0"
+gem "puma", "~> 6.6"
+
 
 # JavaScript & Hotwire
 gem "importmap-rails"
