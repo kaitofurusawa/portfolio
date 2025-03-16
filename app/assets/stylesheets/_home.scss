@@ -1,0 +1,12 @@
+@import "variables";
+@import "mixins";
+@import "boards";
+
+.more-boards {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-more {
+  @include button-style($primary-color, $primary-hover);
+}

@@ -5,14 +5,27 @@ ruby '3.2.2'
 # Rails 本体
 gem "rails", "~> 8.0.2"
 
-# アセットパイプライン
-gem "propshaft"
+# Propshaft を削除（またはコメントアウト）
+# gem 'propshaft'
+
+# Sprockets を追加
+gem "sprockets-rails", "~> 3.5"
+gem "sprockets", "~> 4.2"
 
 # PostgreSQL
 gem "pg", "~> 1.5"
 
 gem "puma", "~> 6.6"
 
+gem 'devise'
+
+gem 'kaminari'
+
+gem 'faker'
+
+gem "sassc-rails"
+
+# gem 'annotate'
 
 # JavaScript & Hotwire
 gem "importmap-rails"
@@ -35,7 +48,7 @@ gem "bootsnap", require: false
 
 group :development, :test do
   # デバッグツール
-  gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
+  # gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 
   # 静的解析（セキュリティチェック）
   gem "brakeman", require: false

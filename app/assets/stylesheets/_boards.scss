@@ -1,0 +1,28 @@
+@import "variables";
+
+.board-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.board-card {
+  background: #fff;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  padding: 15px;
+  text-align: center;
+}
+
+.board-thumbnail {
+  width: 250px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: $border-radius;
+}
+
+.pagination {
+  text-align: center;
+  margin-top: 20px;
+}

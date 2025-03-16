@@ -1,0 +1,36 @@
+@import "variables";  // 変数定義
+@import "mixins";
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: $background-color;
+  color: $text-color;
+  padding: 15px 10px;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 20px);
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.title h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.login-btn {
+  @include button-style($secondary-color, $secondary-hover);
+  margin-left: auto;
+}

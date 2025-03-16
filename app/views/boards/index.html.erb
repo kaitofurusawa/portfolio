@@ -1,0 +1,14 @@
+<h2 class="section-title">掲示板一覧</h2>
+
+<div class="board-grid">
+  <% @boards.each do |board| %>
+    <div class="board-card">
+      <%= image_tag board.thumbnail_url, alt: board.title, class: "board-thumbnail" %>
+      <h3><%= link_to board.title, board_path(board) %></h3>
+    </div>
+  <% end %>
+</div>
+
+<div class="pagination">
+  <%= paginate @boards %>
+</div>
