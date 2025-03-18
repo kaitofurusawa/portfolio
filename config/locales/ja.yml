@@ -1,0 +1,16 @@
+ja:
+  site:
+    title: "何切るドットコム"
+  footer:
+    text: "ここに任意の文字を入れられます。"
+  buttons:
+    login: "ログイン"
+    signup: "新規登録"
+    register: "登録する"
+  titles:
+    login: "ログイン"
+    signup: "新規登録"
+  labels:
+    email: "メールアドレス"
+    password: "パスワード"
+    password_confirmation: "パスワード（確認）"
