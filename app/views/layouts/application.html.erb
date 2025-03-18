@@ -13,10 +13,11 @@
   <header class="site-header">
     <div class="container header-container">
       <div class="title">
-        <h1>何切るドットコム</h1>
+        <h1><%= link_to "何切るドットコム", root_path, class: "site-title-link" %></h1>
       </div>
-      <div class="login-button">
-        <%= button_to "ログイン", new_user_session_path, method: :get, class: "login-btn" %>
+      <div class="auth-buttons">
+        <%= button_to "新規登録", new_user_path, method: :get, class: "signup-btn" %>
+        <%= button_to "ログイン", login_path, method: :get, class: "login-btn" %>
       </div>
     </div>
   </header>

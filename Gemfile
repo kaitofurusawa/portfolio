@@ -27,6 +27,8 @@ gem "sassc-rails"
 
 # gem 'annotate'
 
+gem 'sorcery'
+
 # JavaScript & Hotwire
 gem "importmap-rails"
 gem "turbo-rails"

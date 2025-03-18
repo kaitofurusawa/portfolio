@@ -34,3 +34,21 @@ header {
   @include button-style($secondary-color, $secondary-hover);
   margin-left: auto;
 }
+
+.site-title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 10px; // ボタンの間の余白
+
+  .signup-btn {
+    @include button-style(#2ecc71, #27ae60); // 緑
+  }
+
+  .login-btn {
+    @include button-style(#3498db, #2980b9); // 青
+  }
+}
