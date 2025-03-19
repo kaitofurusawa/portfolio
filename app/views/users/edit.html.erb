@@ -1,0 +1,19 @@
+<h2 class="section-title"><%= t('users.edit.title') %></h2>
+
+<div class="mypage-container">
+  <%= form_with model: @user, local: true do |f| %>
+    <div class="form-group">
+      <%= f.label :name, t('activerecord.attributes.user.name') %>
+      <%= f.text_field :name, class: "form-input" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :profile_image, t('activerecord.attributes.user.profile_image') %>
+      <%= f.file_field :profile_image, class: "form-input" %>
+    </div>
+
+    <%= f.submit t('users.edit.submit'), class: "edit-btn" %>
+  <% end %>
+
+  <%= link_to t('users.edit.back'), user_path(@user), class: "back-btn" %>
+</div>

@@ -1,0 +1,33 @@
+.site-header {
+  background-color: #818181;
+  color: white;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 15px 30px;
+    box-sizing: border-box;  // ★ 追加！はみ出し防止！
+  }
+
+  .title h1 {
+    margin: 0;
+    font-size: 24px;
+    line-height: 36px;
+
+    .site-title-link {
+      color: white;
+      text-decoration: none;
+      display: inline-block;
+    }
+  }
+
+  .auth-buttons, .user-nav {
+    display: flex;
+    gap: 12px;
+  }
+}

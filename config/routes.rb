@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'boards#index'
 
   # ユーザー登録関連（sorcery用）
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :show, :edit, :update]
 
   # ログイン・ログアウト関連（sorcery用）
   resources :sessions, only: [:new, :create, :destroy]

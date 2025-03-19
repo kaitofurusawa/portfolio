@@ -5,15 +5,15 @@ class SessionsController < ApplicationController
   def create
     @user = login(params[:email], params[:password])
     if @user
-      redirect_to root_path, notice: 'ログイン成功'
+      redirect_to root_path, notice: t('sessions.create.success')
     else
-      flash.now[:alert] = 'ログイン失敗'
+      flash.now[:alert] = t('sessions.create.failure')
       render :new
     end
   end
 
   def destroy
     logout
-    redirect_to root_path, notice: 'ログアウトしました'
+    redirect_to root_path, notice: t('sessions.destroy.success')
   end
 end

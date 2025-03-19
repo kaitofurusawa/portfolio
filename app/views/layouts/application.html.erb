@@ -10,21 +10,10 @@
   <%= javascript_include_tag "application" %>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-container">
-      <div class="title">
-        <h1><%= link_to t('site.title'), root_path, class: "site-title-link" %></h1>
-      </div>
-      <div class="auth-buttons">
-        <%= button_to t('buttons.signup'), new_user_path, method: :get, class: "signup-btn" %>
-        <%= button_to t('buttons.login'), login_path, method: :get, class: "login-btn" %>
-      </div>
-    </div>
-  </header>
+  <%= render 'layouts/header' %>
 
   <main class="site-main">
     <div class="container">
-
       <% flash.each do |key, message| %>
         <div class="flash <%= key %>"><%= message %></div>
       <% end %>
@@ -33,11 +22,6 @@
     </div>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-container">
-      <h2><%= t('site.title') %></h2>
-      <p id="footer-text"><%= t('footer.text') %></p>
-    </div>
-  </footer>
+  <%= render 'layouts/footer' %>
 </body>
 </html>

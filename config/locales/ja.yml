@@ -1,4 +1,15 @@
 ja:
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード（確認）
+        profile_image: プロフィール画像
+
   site:
     title: "何切るドットコム"
   footer:
@@ -7,10 +18,35 @@ ja:
     login: "ログイン"
     signup: "新規登録"
     register: "登録する"
+    post: "何切る投稿"
+    mypage: "マイページ"
+    edit: "編集"
+    logout: "ログアウト"
   titles:
     login: "ログイン"
     signup: "新規登録"
+    boards: 掲示板一覧
+    mypage: "マイページ"
+  sessions:
+    create:
+      success: "ログインに成功しました"
+      failure: "ログインに失敗しました"
+    destroy:
+      success: "ログアウトしました"
   labels:
+    name: 名前
     email: "メールアドレス"
     password: "パスワード"
     password_confirmation: "パスワード（確認）"
+    guest: "ゲスト"
+  users:
+    create:
+      success: "ユーザー登録が完了しました"
+      failure: "登録に失敗しました"
+    edit:
+      title: プロフィール編集
+      submit: 更新する
+      back: マイページに戻る
+    update:
+      success: プロフィールを更新しました
+      failure: プロフィールの更新に失敗しました

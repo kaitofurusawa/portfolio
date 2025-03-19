@@ -1,0 +1,44 @@
+@mixin button-style($color, $hover-color) {
+  background-color: $color;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $hover-color;
+  }
+}
+
+.login-btn {
+  @include button-style(#3498db, #2980b9);
+}
+
+.signup-btn {
+  @include button-style(#2ecc71, #27ae60);
+}
+
+.post-btn {
+  @include button-style(#e67e22, #d35400);
+}
+
+.mypage-btn {
+  display: flex;
+  align-items: center;
+}
+
+.user-icon {
+  height: 36px;        // ボタンの高さと合わせる（32pxでもOK）
+  width: 36px;         // 正円にするならwidthも合わせる
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  background-color: transparent; // 念のため
+}
+
+.logout-btn {
+  @include button-style(#e74c3c, #c0392b);  // 色はログアウト用に赤系、変えてOK
+}

@@ -1,0 +1,16 @@
+.flash {
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  font-size: 16px;
+
+  &.notice {
+    background-color: #dff0d8;
+    color: #3c763d;
+  }
+
+  &.alert {
+    background-color: #f2dede;
+    color: #a94442;
+  }
+}

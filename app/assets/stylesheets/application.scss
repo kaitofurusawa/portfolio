@@ -1,12 +1,20 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
 // 共通スタイル
-@import "variables";  // 変数（色やレイアウト）
-@import "mixins";     // 再利用可能なスタイル（ボタンなど）
-@import "layout";   // 共通レイアウト
+@import "variables";
+@import "mixins";
+@import "layout";
+@import "layout/header";
+@import "layout/footer";
+@import "components/buttons";
+@import "components/flash";
 
 // 各ページのスタイル
-@import "header";      // ヘッダーのスタイル
-@import "footer";      // フッターのスタイル
 @import "home";        // ホームページのスタイル
 @import "boards";      // 掲示板のスタイル
 @import "login";     // ログインページのスタイル
 @import "signup";    // ユーザー登録ページのスタイル
+@import "mypage";    // マイページのスタイル

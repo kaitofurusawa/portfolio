@@ -1,0 +1,13 @@
+<h2 class="section-title"><%= t('titles.mypage') %></h2>
+
+<div class="mypage-container">
+  <% if current_user.profile_image.attached? %>
+    <%= image_tag current_user.profile_image, class: "profile-image" %>
+  <% else %>
+    <%= image_tag 'user_icon.png', class: "profile-image" %>
+  <% end %>
+  <div class="user-name"><%= current_user.name || t('labels.guest') %></div>
+
+  <%= link_to t('buttons.edit'), edit_user_path(current_user), class: "edit-btn" %>
+  <%= button_to t('buttons.logout'), logout_path, method: :delete, class: "logout-btn" %>
+</div>
