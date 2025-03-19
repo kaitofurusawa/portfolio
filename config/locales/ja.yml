@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      board: 掲示板
     attributes:
       user:
         name: 名前
@@ -9,6 +10,10 @@ ja:
         password: パスワード
         password_confirmation: パスワード（確認）
         profile_image: プロフィール画像
+      board:
+        title: タイトル
+        content: 本文
+        thumbnail_url: 何切る画像
 
   site:
     title: "何切るドットコム"
@@ -22,11 +27,14 @@ ja:
     mypage: "マイページ"
     edit: "編集"
     logout: "ログアウト"
+    update: 更新
+    back: 戻る
   titles:
     login: "ログイン"
     signup: "新規登録"
     boards: 掲示板一覧
     mypage: "マイページ"
+    edit_board: 投稿を編集
   sessions:
     create:
       success: "ログインに成功しました"
@@ -45,7 +53,7 @@ ja:
       failure: "登録に失敗しました"
     edit:
       title: プロフィール編集
-      submit: 更新する
+      submit: 更新
       back: マイページに戻る
     update:
       success: プロフィールを更新しました

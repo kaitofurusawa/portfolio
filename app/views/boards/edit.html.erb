@@ -1,0 +1,24 @@
+<h2 class="section-title"><%= t('titles.edit_board') %></h2>
+
+<div class="mypage-container">
+  <%= form_with model: @board, local: true, html: { multipart: true } do |f| %>
+    <div class="form-group">
+      <%= f.label :title, t('activerecord.attributes.board.title') %>
+      <%= f.text_field :title, class: "form-input" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :content, t('activerecord.attributes.board.content') %>
+      <%= f.text_area :content, class: "form-input" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :image, t('activerecord.attributes.board.image') %>
+      <%= f.file_field :image, class: "form-input" %>
+    </div>
+
+    <%= f.submit t('buttons.update'), class: "edit-btn" %>
+  <% end %>
+
+  <%= link_to t('buttons.back'), board_path(@board), class: "back-btn" %>
+</div>

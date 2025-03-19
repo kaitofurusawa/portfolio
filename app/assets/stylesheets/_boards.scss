@@ -26,3 +26,25 @@
   text-align: center;
   margin-top: 20px;
 }
+
+.board-detail {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+
+  .board-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+
+  .board-content {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .edit-btn {
+    @include button-style(#3498db, #2980b9);
+  }
+}

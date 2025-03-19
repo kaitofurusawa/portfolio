@@ -1,0 +1,13 @@
+<div class="board-detail">
+  <%= image_tag @board.image.attached? ? url_for(@board.image) : 'noimage.png', class: "board-image" %>
+
+  <h2 class="section-title board-title"><%= @board.title %></h2>
+
+  <div class="board-content">
+    <p><%= simple_format(@board.content) %></p>
+  </div>
+
+  <% if current_user == @board.user %>
+    <%= link_to t('buttons.edit'), edit_board_path(@board), class: "edit-btn" %>
+  <% end %>
+</div>
