@@ -1,0 +1,8 @@
+<%= turbo_frame_tag "comment_#{comment.id}" do %>
+  <%= form_with model: [comment.board, comment], local: false do |f| %>
+    <div class="form-group">
+      <%= f.text_area :content, class: "form-input" %>
+    </div>
+    <%= f.submit t('buttons.update'), class: "edit-btn" %>
+  <% end %>
+<% end %>

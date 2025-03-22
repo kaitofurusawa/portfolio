@@ -1,0 +1,97 @@
+.comment-container {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.comment-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+#comments {
+  display: flex;
+  flex-direction: column;
+  align-items: center; // 中央寄せ
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+
+  .comment-user-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .comment-user-name {
+    font-weight: bold;
+    font-size: 18px;
+  }
+}
+
+.comment-content {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.comment-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+
+  .edit-btn {
+    @include button-style(#3498db, #2980b9);
+    padding: 10px 15px; // 現状維持（高さそのまま）
+    font-size: 16px;
+  }
+
+  .delete-btn {
+    @include button-style(#e74c3c, #c0392b);
+    padding: 3px 15px;   // 少し小さめ
+    font-size: 16px;     // 文字もやや小さく
+    height: 38px;        // 高さ固定
+    min-width: 80px;     // 最低幅を持たせてバランス調整
+    display: flex;
+    align-items: center;  // 縦中央揃え
+    justify-content: center; // 横中央も念のため
+  }
+}
+
+
+.comment-form-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+  .comment-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .post-btn {
+      @include button-style(#3498db, #2980b9);
+      white-space: nowrap;
+      height: 44px;
+    }
+  }
+}
+
+textarea.form-input {
+  width: 800px;
+  min-height: 120px;
+  padding: 10px;
+  font-size: 16px;
+  resize: vertical;
+  box-sizing: border-box;
+}

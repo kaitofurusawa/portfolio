@@ -31,14 +31,38 @@
 }
 
 .user-icon {
-  height: 36px;        // ボタンの高さと合わせる（32pxでもOK）
-  width: 36px;         // 正円にするならwidthも合わせる
+  height: 36px;
+  width: 36px;
   border-radius: 50%;
   object-fit: cover;
   display: block;
-  background-color: transparent; // 念のため
+  background-color: transparent;
+}
+
+.edit-btn, .logout-btn {
+  width: 200px;
+  margin: 0 auto 15px;
+  display: block;
+}
+
+.edit-btn {
+  @include button-style(#3498db, #2980b9);
 }
 
 .logout-btn {
-  @include button-style(#e74c3c, #c0392b);  // 色はログアウト用に赤系、変えてOK
+  @include button-style(#e74c3c, #c0392b);
+}
+
+.delete-btn {
+  @include button-style(#e74c3c, #c0392b);
+  width: 200px;
+  text-align: center;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }

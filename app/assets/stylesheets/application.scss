@@ -4,17 +4,19 @@ body {
 }
 
 // 共通スタイル
-@import "variables";
-@import "mixins";
-@import "layout";
-@import "layout/header";
-@import "layout/footer";
-@import "components/buttons";
-@import "components/flash";
+@import "variables";  // 変数
+@import "mixins"; // ミックスイン
+@import "layout/base";  // ベース
+@import "layout/header";  // ヘッダー
+@import "layout/footer";  // フッター
+@import "components/buttons"; // ボタン
+@import "components/flash"; // フラッシュメッセージ
+@import "components/pagination";  // ページネーション
+@import "components/comments";  // コメント
 
 // 各ページのスタイル
-@import "home";        // ホームページのスタイル
-@import "boards";      // 掲示板のスタイル
-@import "login";     // ログインページのスタイル
-@import "signup";    // ユーザー登録ページのスタイル
-@import "mypage";    // マイページのスタイル
+@import "pages/home"; // トップページ
+@import "pages/boards"; // 掲示板一覧
+@import "pages/login"; // ログイン
+@import "pages/signup"; // 新規登録
+@import "pages/mypage"; // マイページ

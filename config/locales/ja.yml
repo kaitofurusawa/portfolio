@@ -28,13 +28,19 @@ ja:
     edit: "編集"
     logout: "ログアウト"
     update: 更新
+    delete: "削除"
     back: 戻る
+    submit_post: "投稿"
+    comment: "コメントする"
+    submit_comment: "コメントする"
   titles:
     login: "ログイン"
     signup: "新規登録"
     boards: 掲示板一覧
     mypage: "マイページ"
     edit_board: 投稿を編集
+    new_board: "何切る投稿"
+    comments: "コメント一覧"
   sessions:
     create:
       success: "ログインに成功しました"
@@ -47,6 +53,8 @@ ja:
     password: "パスワード"
     password_confirmation: "パスワード（確認）"
     guest: "ゲスト"
+  comments:
+    delete_confirm: "コメントを削除しますか？"
   users:
     create:
       success: "ユーザー登録が完了しました"
@@ -58,3 +66,15 @@ ja:
     update:
       success: プロフィールを更新しました
       failure: プロフィールの更新に失敗しました
+  boards:
+    create:
+      success: "投稿が完了しました"
+      failure: "投稿に失敗しました"
+    update:
+      success: "投稿を更新しました"
+      failure: "投稿の更新に失敗しました"
+    destroy:
+      confirm: "本当に削除しますか？"
+    delete:
+      success: "掲示板を削除しました"
+      failure: "削除できませんでした"

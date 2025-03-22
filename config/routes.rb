@@ -12,5 +12,7 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
 
   # 掲示板（boards）のルーティング
-  resources :boards, only: [:index, :show, :new, :create, :edit, :update]
+  resources :boards do
+    resources :comments, only: [:create, :update, :destroy, :edit]
+  end
 end

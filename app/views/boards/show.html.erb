@@ -11,3 +11,10 @@
     <%= link_to t('buttons.edit'), edit_board_path(@board), class: "edit-btn" %>
   <% end %>
 </div>
+
+<h2 class="comment-title"><%= t('titles.comments') %></h2>
+<div id="comments">
+  <%= render @board.comments %>
+</div>
+
+<%= render partial: 'comments/form', locals: { board: @board } %>

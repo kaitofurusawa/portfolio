@@ -1,0 +1,18 @@
+.mypage-container {
+  max-width: 400px;
+  margin: 50px auto;
+  text-align: center;
+
+  .profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+
+  .user-name {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+}

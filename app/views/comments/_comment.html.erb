@@ -1,0 +1,30 @@
+<%= turbo_frame_tag "comment_#{comment.id}" do %>
+  <div class="comment-container">
+    <div class="comment-header">
+      <% if comment.user.profile_image.attached? %>
+        <%= image_tag comment.user.profile_image, class: "comment-user-icon" %>
+      <% else %>
+        <%= image_tag 'user_icon.png', class: "comment-user-icon" %>
+      <% end %>
+      <span class="comment-user-name"><%= comment.user.name || t('labels.guest') %></span>
+    </div>
+
+    <div class="comment-content">
+      <p><%= comment.content %></p>
+    </div>
+
+    <% if comment.user == current_user %>
+      <div class="comment-actions">
+        <%= link_to t('buttons.edit'),
+            edit_board_comment_path(comment.board, comment),
+            data: { turbo_frame: "comment_#{comment.id}" },
+            class: "edit-btn" %>
+
+        <%= link_to t('buttons.delete'), board_comment_path(comment.board, comment),
+            "data-turbo-method": :delete,
+            "data-turbo-confirm": t('comments.delete_confirm'),
+            class: "delete-btn" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

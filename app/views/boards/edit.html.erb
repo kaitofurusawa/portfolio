@@ -1,24 +1,29 @@
-<h2 class="section-title"><%= t('titles.edit_board') %></h2>
+<%= form_with model: @board, local: true, html: { multipart: true } do |f| %>
+  <!-- 編集フォーム内容 -->
+  <div class="form-group">
+    <%= f.label :title, t('activerecord.attributes.board.title') %>
+    <%= f.text_field :title, class: "form-input" %>
+  </div>
 
-<div class="mypage-container">
-  <%= form_with model: @board, local: true, html: { multipart: true } do |f| %>
-    <div class="form-group">
-      <%= f.label :title, t('activerecord.attributes.board.title') %>
-      <%= f.text_field :title, class: "form-input" %>
-    </div>
+  <div class="form-group">
+    <%= f.label :content, t('activerecord.attributes.board.content') %>
+    <%= f.text_area :content, class: "form-input" %>
+  </div>
 
-    <div class="form-group">
-      <%= f.label :content, t('activerecord.attributes.board.content') %>
-      <%= f.text_area :content, class: "form-input" %>
-    </div>
+  <div class="form-group">
+    <%= f.label :image, t('activerecord.attributes.board.image') %>
+    <%= f.file_field :image, class: "form-input" %>
+  </div>
 
-    <div class="form-group">
-      <%= f.label :image, t('activerecord.attributes.board.image') %>
-      <%= f.file_field :image, class: "form-input" %>
-    </div>
-
+  <div class="button-group">
     <%= f.submit t('buttons.update'), class: "edit-btn" %>
-  <% end %>
+  </div>
+<% end %>
 
-  <%= link_to t('buttons.back'), board_path(@board), class: "back-btn" %>
+<!-- 削除は完全にform_withの外で独立させる -->
+<div class="button-group">
+  <%= button_to t('buttons.delete'), board_path(@board), method: :delete, 
+      class: "delete-btn", data: { confirm: t('boards.delete.confirm') } %>
 </div>
+
+<%= link_to t('buttons.back'), board_path(@board), class: "back-btn" %>

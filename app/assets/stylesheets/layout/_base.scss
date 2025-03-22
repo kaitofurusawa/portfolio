@@ -32,3 +32,31 @@
   margin-left: 30px; // 左に余白
   color: black;
 }
+
+// ボタンの並び方（共通レイアウト用）
+.button-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center; // 中央寄せ
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  // 中央揃え
+  margin-bottom: 20px;
+
+  label {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .form-input {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+    text-align: left;  // 入力文字は左揃え
+  }
+}
