@@ -95,3 +95,8 @@ textarea.form-input {
   resize: vertical;
   box-sizing: border-box;
 }
+
+.comment-content p {
+  word-wrap: break-word;
+  white-space: pre-wrap; /* 改行を保持しつつ、長い単語を折り返す */
+}

@@ -1,16 +1,15 @@
 <%= turbo_frame_tag "comment_form" do %>
   <div class="comment-form-container">
-    <%= form_with model: [board, Comment.new], data: { turbo_stream: true }, local: false, class: "comment-form", id: "new_comment_form" do |f| %>
-      <%= f.text_area :content, placeholder: "コメントを入力...", class: "form-input", data: { controller: "auto-resize" } %>
+    <%= form_with model: [board, comment], data: { turbo_stream: true }, local: false, class: "comment-form", id: "new_comment_form" do |f| %>
+      <%= f.text_area :content, placeholder: t('placeholders.comment'), class: "form-input", data: { controller: "auto-resize" } %>
+
+      <% if f.object.errors[:content].any? %>
+        <div class="error-message"><%= f.object.errors[:content].first %></div>
+      <% end %>
+
       <%= f.submit t('buttons.submit_comment'), class: "post-btn" %>
     <% end %>
   </div>
 <% end %>
 
-<%= javascript_tag do %>
-  document.addEventListener("turbo:submit-end", (event) => {
-    if (event.target.id === "new_comment_form" && event.detail.success) {
-      event.target.reset(); // 投稿後にフォームをクリア
-    }
-  });
-<% end %>
+<%= javascript_include_tag "comments" %>

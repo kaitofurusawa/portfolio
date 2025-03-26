@@ -1,29 +1,41 @@
-<%= form_with model: @board, local: true, html: { multipart: true } do |f| %>
-  <!-- 編集フォーム内容 -->
-  <div class="form-group">
-    <%= f.label :title, t('activerecord.attributes.board.title') %>
-    <%= f.text_field :title, class: "form-input" %>
-  </div>
+<div class="mypage-container">
+  <%= form_with model: @board, local: true, html: { multipart: true } do |f| %>
+    <div class="form-group">
+      <%= f.label :title, t('activerecord.attributes.board.title') %>
+      <%= f.text_field :title, class: "form-input #{'input-error' if @board.errors[:title].any?}" %>
+      <% if @board.errors[:title].any? %>
+        <div class="error-message"><%= @board.errors.full_messages_for(:title).first %></div>
+      <% end %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :content, t('activerecord.attributes.board.content') %>
-    <%= f.text_area :content, class: "form-input" %>
-  </div>
+    <div class="form-group">
+      <%= f.label :content, t('activerecord.attributes.board.content') %>
+      <%= f.text_area :content, class: "form-input #{'input-error' if @board.errors[:content].any?}" %>
+      <% if @board.errors[:content].any? %>
+        <div class="error-message"><%= @board.errors.full_messages_for(:content).first %></div>
+      <% end %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :image, t('activerecord.attributes.board.image') %>
-    <%= f.file_field :image, class: "form-input" %>
+    <div class="form-group">
+      <%= f.label :image, t('activerecord.attributes.board.thumbnail_url') %>
+      <%= f.file_field :image, class: "form-input #{'input-error' if @board.errors[:image].any?}" %>
+      <% if @board.errors[:image].any? %>
+        <div class="error-message"><%= @board.errors.full_messages_for(:image).first %></div>
+      <% end %>
+    </div>
+
+    <div class="button-group">
+      <%= f.submit t('buttons.update'), class: "edit-btn" %>
+    </div>
+  <% end %>
+
+  <!-- 削除ボタンは完全独立 -->
+  <div class="button-group">
+    <%= button_to t('buttons.delete'), board_path(@board), method: :delete, 
+        class: "delete-btn", data: { confirm: t('boards.destroy.confirm') } %>
   </div>
 
   <div class="button-group">
-    <%= f.submit t('buttons.update'), class: "edit-btn" %>
+    <%= link_to t('buttons.back'), board_path(@board), class: "back-btn" %>
   </div>
-<% end %>
-
-<!-- 削除は完全にform_withの外で独立させる -->
-<div class="button-group">
-  <%= button_to t('buttons.delete'), board_path(@board), method: :delete, 
-      class: "delete-btn", data: { confirm: t('boards.delete.confirm') } %>
 </div>
-
-<%= link_to t('buttons.back'), board_path(@board), class: "back-btn" %>

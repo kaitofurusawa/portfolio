@@ -1,8 +1,14 @@
 ja:
+  site:
+    title: "何切るドットコム"
+  footer:
+    text: "ここに任意の文字を入れられます。"
+
   activerecord:
     models:
       user: ユーザー
       board: 掲示板
+      comment: コメント
     attributes:
       user:
         name: 名前
@@ -14,11 +20,41 @@ ja:
         title: タイトル
         content: 本文
         thumbnail_url: 何切る画像
+      comment:
+        content: コメント内容
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: "名前を入力してください"
+            email:
+              blank: "メールアドレスを入力してください"
+              taken: "このメールアドレスは既に使用されています"
+            password:
+              blank: "パスワードを入力してください"
+              too_short: "パスワードは%{count}文字以上にしてください"
+              confirmation: "パスワードと確認用パスワードが一致しません"
+            password_confirmation:
+              confirmation: "パスワードと確認用パスワードが一致しません"
+        board:
+          attributes:
+            title:
+              blank: "タイトルを入力してください"
+              too_long: "タイトルは%{count}文字以内で入力してください"
+            content:
+              blank: "本文を入力してください"
+              too_long: "本文は%{count}文字以内で入力してください"
+            image:
+              blank: "画像を選択してください"
+              content_type_invalid: "画像の形式が無効です (JPEG, PNG, WEBPのみ)"
+              too_large: "画像サイズは%{count}MB以下にしてください"
+        comment:
+          attributes:
+            content:
+              blank: "コメントを入力してください"
+              too_long: "コメントは%{count}文字以内で入力してください"
 
-  site:
-    title: "何切るドットコム"
-  footer:
-    text: "ここに任意の文字を入れられます。"
   buttons:
     login: "ログイン"
     signup: "新規登録"
@@ -27,45 +63,51 @@ ja:
     mypage: "マイページ"
     edit: "編集"
     logout: "ログアウト"
-    update: 更新
+    update: "更新"
     delete: "削除"
-    back: 戻る
+    back: "戻る"
     submit_post: "投稿"
     comment: "コメントする"
     submit_comment: "コメントする"
+
   titles:
     login: "ログイン"
     signup: "新規登録"
-    boards: 掲示板一覧
+    boards: "掲示板一覧"
     mypage: "マイページ"
-    edit_board: 投稿を編集
+    edit_board: "投稿を編集"
     new_board: "何切る投稿"
     comments: "コメント一覧"
+
+  labels:
+    name: "名前"
+    email: "メールアドレス"
+    password: "パスワード"
+    password_confirmation: "パスワード（確認）"
+    guest: "ゲスト"
+
+  placeholders:
+    comment: "コメントを入力"
+
   sessions:
     create:
       success: "ログインに成功しました"
       failure: "ログインに失敗しました"
     destroy:
       success: "ログアウトしました"
-  labels:
-    name: 名前
-    email: "メールアドレス"
-    password: "パスワード"
-    password_confirmation: "パスワード（確認）"
-    guest: "ゲスト"
-  comments:
-    delete_confirm: "コメントを削除しますか？"
+
   users:
     create:
       success: "ユーザー登録が完了しました"
       failure: "登録に失敗しました"
     edit:
-      title: プロフィール編集
-      submit: 更新
-      back: マイページに戻る
+      title: "プロフィール編集"
+      submit: "更新"
+      back: "マイページに戻る"
     update:
-      success: プロフィールを更新しました
-      failure: プロフィールの更新に失敗しました
+      success: "プロフィールを更新しました"
+      failure: "プロフィールの更新に失敗しました"
+
   boards:
     create:
       success: "投稿が完了しました"
@@ -78,3 +120,15 @@ ja:
     delete:
       success: "掲示板を削除しました"
       failure: "削除できませんでした"
+
+  comments:
+    create:
+      success: "コメントを投稿しました"
+      failure: "コメント投稿に失敗しました"
+    update:
+      success: "コメントを更新しました"
+      failure: "コメントの更新に失敗しました"
+    destroy:
+      success: "コメントを削除しました"
+      failure: "コメントの削除に失敗しました"
+    delete_confirm: "コメントを削除しますか？"

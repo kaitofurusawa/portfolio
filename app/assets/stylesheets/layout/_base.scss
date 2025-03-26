@@ -43,7 +43,6 @@
 .form-group {
   display: flex;
   flex-direction: column;
-  align-items: center;  // 中央揃え
   margin-bottom: 20px;
 
   label {
@@ -51,12 +50,24 @@
     margin-bottom: 8px;
   }
 
-  .form-input {
+  .form-input,
+  .form-input.input-error {
     width: 100%;
     max-width: 400px;
     padding: 10px;
     font-size: 16px;
     box-sizing: border-box;
-    text-align: left;  // 入力文字は左揃え
+    text-align: left;
+    border: 1px solid #ccc;
   }
+
+  .form-input.input-error {
+    border: 2px solid red;
+  }
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 4px;
 }

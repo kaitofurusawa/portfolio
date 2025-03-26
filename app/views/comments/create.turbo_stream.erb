@@ -1,3 +1,9 @@
-<%= turbo_stream.append "comments" do %>
-  <%= render @comment %>
+<% if @comment.persisted? %>
+  <%= turbo_stream.append "comments" do %>
+    <%= render @comment %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.replace "comment_form" do %>
+    <%= render partial: "comments/form", locals: { board: @board, comment: @comment } %>
+  <% end %>
 <% end %>

@@ -29,6 +29,8 @@ gem "sassc-rails"
 
 gem 'sorcery'
 
+gem 'active_storage_validations'
+
 # JavaScript & Hotwire
 gem "importmap-rails"
 gem "turbo-rails"

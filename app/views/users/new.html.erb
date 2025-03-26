@@ -2,24 +2,45 @@
 
 <div class="signup-form-container">
   <%= form_with model: @user, url: users_path, local: true do |f| %>
+
     <div class="form-group">
       <%= f.label :name, t('labels.name') %>
-      <%= f.text_field :name, class: "form-input" %>
+      <%= f.text_field :name, class: "form-input #{'input-error' if @user.errors[:name].any?}" %>
+      <% if @user.errors[:name].any? %>
+        <div class="error-message"><%= @user.errors[:name].first %></div>
+      <% end %>
     </div>
 
     <div class="form-group">
       <%= f.label :email, t('labels.email') %>
-      <%= f.email_field :email, class: "form-input" %>
+      <%= f.email_field :email, class: "form-input #{'input-error' if @user.errors[:email].any?}" %>
+      <% if @user.errors[:email].any? %>
+        <div class="error-message"><%= @user.errors[:email].first %></div>
+      <% end %>
     </div>
 
     <div class="form-group">
       <%= f.label :password, t('labels.password') %>
-      <%= f.password_field :password, class: "form-input" %>
+      <%= f.password_field :password, class: "form-input #{'input-error' if @user.errors[:password].any?}" %>
+      <% if @user.errors[:password].any? %>
+        <div class="error-message"><%= @user.errors[:password].first %></div>
+      <% end %>
     </div>
 
     <div class="form-group">
       <%= f.label :password_confirmation, t('labels.password_confirmation') %>
-      <%= f.password_field :password_confirmation, class: "form-input" %>
+      <%= f.password_field :password_confirmation, class: "form-input #{'input-error' if @user.errors[:password_confirmation].any?}" %>
+      <% if @user.errors[:password_confirmation].any? %>
+        <div class="error-message"><%= @user.errors[:password_confirmation].first %></div>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :profile_image, t('activerecord.attributes.user.profile_image') %>
+      <%= f.file_field :profile_image, class: "form-input #{'input-error' if @user.errors[:profile_image].any?}" %>
+      <% if @user.errors[:profile_image].any? %>
+        <div class="error-message"><%= @user.errors[:profile_image].first %></div>
+      <% end %>
     </div>
 
     <%= f.submit t('buttons.register'), class: "signup-btn" %>

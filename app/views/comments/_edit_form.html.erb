@@ -2,7 +2,10 @@
   <%= form_with model: [comment.board, comment], local: false do |f| %>
     <div class="form-group">
       <%= f.text_area :content, class: "form-input" %>
+      <% if f.object.errors[:content].any? %>
+        <div class="error-message"><%= f.object.errors[:content].first %></div>
+      <% end %>
     </div>
-    <%= f.submit t('buttons.update'), class: "edit-btn" %>
+    <%= f.submit t('buttons.update'), class: "update-btn" %>
   <% end %>
 <% end %>

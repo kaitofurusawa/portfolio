@@ -8,13 +8,15 @@
   </div>
 
   <% if current_user == @board.user %>
-    <%= link_to t('buttons.edit'), edit_board_path(@board), class: "edit-btn" %>
+    <div class="button-group">
+      <%= link_to t('buttons.edit'), edit_board_path(@board), class: "edit-btn" %>
+    </div>
   <% end %>
 </div>
 
 <h2 class="comment-title"><%= t('titles.comments') %></h2>
 <div id="comments">
-  <%= render @board.comments %>
+  <%= render @comments %>
 </div>
 
-<%= render partial: 'comments/form', locals: { board: @board } %>
+<%= render partial: 'comments/form', locals: { board: @board, comment: Comment.new } %>

@@ -9,31 +9,46 @@ class CommentsController < ApplicationController
     if @comment.save
       respond_to do |format|
         format.turbo_stream
-        format.html { redirect_to @board }
+        format.html { redirect_to @board, notice: t('comments.create.success') }
       end
     else
       respond_to do |format|
-        format.turbo_stream
-        format.html { redirect_to @board, alert: "コメント投稿失敗" }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(
+            "comment_form",
+            partial: "comments/form",
+            locals: { board: @board, comment: @comment }
+          )
+        end
+        format.html { redirect_to @board, alert: t('comments.create.failure') }
       end
     end
   end
 
   def edit
     @comment = Comment.find(params[:id])
-    render partial: "comments/edit_form", locals: { comment: @comment }
+    respond_to do |format|
+      format.turbo_stream
+      format.html { render partial: "comments/edit_form", locals: { comment: @comment } }
+    end
   end
 
   def update
     if @comment.update(comment_params)
       respond_to do |format|
         format.turbo_stream
-        format.html { redirect_to @comment.board }
+        format.html { redirect_to @comment.board, notice: t('comments.update.success') }
       end
     else
-      # 更新失敗時の処理を追加するならここ
       respond_to do |format|
-        format.html { redirect_to @comment.board, alert: "更新に失敗しました" }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(
+            "comment_#{@comment.id}",
+            partial: "comments/edit_form",
+            locals: { comment: @comment }
+          )
+        end
+        format.html { redirect_to @comment.board, alert: t('comments.update.failure') }
       end
     end
   end
@@ -45,10 +60,10 @@ class CommentsController < ApplicationController
       @comment.destroy
       respond_to do |format|
         format.turbo_stream { render turbo_stream: turbo_stream.remove("comment_#{comment_id}") }
-        format.html { redirect_to @board }
+        format.html { redirect_to @board, notice: t('comments.destroy.success') }
       end
     else
-      redirect_to @board, alert: "削除権限がありません"
+      redirect_to @board, alert: t('comments.destroy.failure')
     end
   end
 
