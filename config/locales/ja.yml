@@ -2,7 +2,7 @@ ja:
   site:
     title: "何切るドットコム"
   footer:
-    text: "ここに任意の文字を入れられます。"
+    text: "麻雀の「何切る」を投稿する掲示板です。"
 
   activerecord:
     models:
@@ -120,6 +120,7 @@ ja:
     delete:
       success: "掲示板を削除しました"
       failure: "削除できませんでした"
+    unauthorized: "この操作を行う権限がありません"
 
   comments:
     create:

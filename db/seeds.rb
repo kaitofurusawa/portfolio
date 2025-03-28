@@ -1,8 +1,11 @@
-10.times do |i|
-  Board.create!(
-    title: "掲示板 #{i + 1}",
-    thumbnail_url: "sample.jpg"
+100.times do |i|
+  board = Board.new(
+    title: "サンプル投稿 #{i + 1}",
+    content: "これはサンプルの本文です #{i + 1}。",
+    user: User.first
   )
-end
 
-puts "10件の掲示板データを作成しました。"
+  unless board.save
+    puts "エラー (#{i + 1} 件目): #{board.errors.full_messages.join(", ")}"
+  end
+end

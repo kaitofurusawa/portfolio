@@ -13,6 +13,7 @@ body {
 @import "components/flash"; // フラッシュメッセージ
 @import "components/pagination";  // ページネーション
 @import "components/comments";  // コメント
+@import "components/user";  // ユーザー
 
 // 各ページのスタイル
 @import "pages/home"; // トップページ

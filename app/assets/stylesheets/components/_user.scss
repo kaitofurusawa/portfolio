@@ -1,0 +1,32 @@
+.board-author {
+  display: flex;
+  justify-content: center; /* 👈 中央揃えに戻す！ */
+  margin: 15px 0;
+
+  .user-link {
+    text-decoration: none;
+
+    .user-info {
+      display: flex;
+      align-items: center;
+
+      .user-icon {
+        height: 36px;
+        width: 36px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 10px;
+      }
+
+      .user-name {
+        font-size: 16px;
+        color: black;
+        text-decoration: none;
+
+        &:hover {
+          color: black;
+        }
+      }
+    }
+  }
+}

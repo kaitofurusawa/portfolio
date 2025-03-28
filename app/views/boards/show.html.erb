@@ -1,6 +1,20 @@
 <div class="board-detail">
   <%= image_tag @board.image.attached? ? url_for(@board.image) : 'noimage.png', class: "board-image" %>
 
+  <div class="board-author">
+    <%= link_to user_path(@board.user), class: "user-link" do %>
+      <div class="user-info">
+        <% if @board.user.profile_image.attached? %>
+          <%= image_tag @board.user.profile_image, class: "user-icon" %>
+        <% else %>
+          <%= image_tag 'user_icon.png', class: "user-icon" %>
+        <% end %>
+        <span class="user-name"><%= @board.user.name %></span>
+      </div>
+    <% end %>
+  </div>
+
+
   <h2 class="section-title board-title"><%= @board.title %></h2>
 
   <div class="board-content">

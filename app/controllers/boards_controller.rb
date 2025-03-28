@@ -1,5 +1,6 @@
 class BoardsController < ApplicationController
-  before_action :set_board, only: [:show, :edit, :update]
+  before_action :set_board, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def new
     @board = Board.new
@@ -15,7 +16,6 @@ class BoardsController < ApplicationController
   end
 
   def edit
-    @board = Board.find(params[:id])
   end
 
   def create
@@ -38,9 +38,7 @@ class BoardsController < ApplicationController
   end
 
   def destroy
-    @board = Board.find(params[:id])
-    if @board.user == current_user
-      @board.destroy
+    if @board.destroy
       redirect_to root_path, notice: t('boards.delete.success')
     else
       redirect_to board_path(@board), alert: t('boards.delete.failure')
@@ -50,6 +48,12 @@ class BoardsController < ApplicationController
   private
   def set_board
     @board = Board.find(params[:id])
+  end
+
+  def authorize_user
+    unless @board.user == current_user
+      redirect_to(root_path, alert: t('boards.unauthorized'))
+    end
   end
 
   def board_params
