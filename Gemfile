@@ -50,6 +50,9 @@ gem "dotenv-rails", groups: [:development, :test]
 # 高速起動
 gem "bootsnap", require: false
 
+# ActiveStorageのドライバ
+gem 'aws-sdk-s3', require: false
+
 group :development, :test do
   # デバッグツール
   # gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
