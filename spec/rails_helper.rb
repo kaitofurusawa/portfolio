@@ -38,7 +38,7 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
-  
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -72,6 +72,6 @@ RSpec.configure do |config|
   config.include LoginMacros, type: :request
 
   config.before(:each) do
-    #allow(ActionDispatch::HostAuthorization).to receive(:authorized?).and_return(true)
+    # allow(ActionDispatch::HostAuthorization).to receive(:authorized?).and_return(true)
   end
 end

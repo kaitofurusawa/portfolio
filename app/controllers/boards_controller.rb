@@ -1,6 +1,6 @@
 class BoardsController < ApplicationController
-  before_action :set_board, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_user, only: [:edit, :update, :destroy]
+  before_action :set_board, only: [ :show, :edit, :update, :destroy ]
+  before_action :authorize_user, only: [ :edit, :update, :destroy ]
 
   def new
     @board = Board.new
@@ -21,27 +21,27 @@ class BoardsController < ApplicationController
   def create
     @board = current_user.boards.build(board_params)
     if @board.save
-      redirect_to @board, notice: t('boards.create.success')
+      redirect_to @board, notice: t("boards.create.success")
     else
-      flash.now[:alert] = t('boards.create.failure')
+      flash.now[:alert] = t("boards.create.failure")
       render :new, status: :unprocessable_entity
     end
   end
 
   def update
     if @board.update(board_params)
-      redirect_to @board, notice: t('boards.update.success')
+      redirect_to @board, notice: t("boards.update.success")
     else
-      flash.now[:alert] = t('boards.update.failure')
+      flash.now[:alert] = t("boards.update.failure")
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     if @board.destroy
-      redirect_to root_path, notice: t('boards.delete.success')
+      redirect_to root_path, notice: t("boards.delete.success")
     else
-      redirect_to board_path(@board), alert: t('boards.delete.failure')
+      redirect_to board_path(@board), alert: t("boards.delete.failure")
     end
   end
 
@@ -52,7 +52,7 @@ class BoardsController < ApplicationController
 
   def authorize_user
     unless @board.user == current_user
-      redirect_to(root_path, alert: t('boards.unauthorized'))
+      redirect_to(root_path, alert: t("boards.unauthorized"))
     end
   end
 

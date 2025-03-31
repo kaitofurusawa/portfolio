@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby '3.2.2'
+ruby "3.2.2"
 
 # Rails 本体
 gem "rails", "~> 8.0.2"
@@ -17,25 +17,25 @@ gem "pg", "~> 1.5"
 
 gem "puma", "~> 6.6"
 
-gem 'devise'
+gem "devise"
 
-gem 'kaminari'
+gem "kaminari"
 
-gem 'faker'
+gem "faker"
 
 gem "sassc-rails"
 
-gem 'database_cleaner-active_record'
+gem "database_cleaner-active_record"
 
-gem 'parallel_tests'
-gem 'spring'
-gem 'spring-commands-rspec'
+gem "parallel_tests"
+gem "spring"
+gem "spring-commands-rspec"
 
 # gem 'annotate'
 
-gem 'sorcery'
+gem "sorcery"
 
-gem 'active_storage_validations'
+gem "active_storage_validations"
 
 # JavaScript & Hotwire
 gem "importmap-rails"
@@ -51,13 +51,13 @@ gem "solid_queue"
 gem "solid_cable"
 
 # dotenv（環境変数管理）
-gem "dotenv-rails", groups: [:development, :test]
+gem "dotenv-rails", groups: [ :development, :test ]
 
 # 高速起動
 gem "bootsnap", require: false
 
 # ActiveStorageのドライバ
-gem 'aws-sdk-s3', require: false
+gem "aws-sdk-s3", require: false
 
 group :development, :test do
   # デバッグツール
@@ -71,21 +71,21 @@ group :development, :test do
 end
 
 group :development, :test do
-  gem 'rspec-rails'
-  gem 'factory_bot_rails'
+  gem "rspec-rails"
+  gem "factory_bot_rails"
 end
 
 group :development do
   # Rails console で pry を使えるようにする
-  gem 'pry-rails'
+  gem "pry-rails"
 
   # エラーページでコンソールを使う
-  gem 'web-console'
+  gem "web-console"
 end
 
 group :test do
-  gem 'capybara'
-  gem 'selenium-webdriver'
-  gem 'webdrivers'
-  gem 'database_cleaner-active_record'
+  gem "capybara"
+  gem "selenium-webdriver"
+  gem "webdrivers"
+  gem "database_cleaner-active_record"
 end

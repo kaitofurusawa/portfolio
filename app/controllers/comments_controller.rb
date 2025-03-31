@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:update, :destroy]
+  before_action :set_comment, only: [ :update, :destroy ]
 
   def create
     @board = Board.find(params[:board_id])
@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     if @comment.save
       respond_to do |format|
         format.turbo_stream
-        format.html { redirect_to @board, notice: t('comments.create.success') }
+        format.html { redirect_to @board, notice: t("comments.create.success") }
       end
     else
       respond_to do |format|
@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
             locals: { board: @board, comment: @comment }
           )
         end
-        format.html { redirect_to @board, alert: t('comments.create.failure') }
+        format.html { redirect_to @board, alert: t("comments.create.failure") }
       end
     end
   end
@@ -37,7 +37,7 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       respond_to do |format|
         format.turbo_stream
-        format.html { redirect_to @comment.board, notice: t('comments.update.success') }
+        format.html { redirect_to @comment.board, notice: t("comments.update.success") }
       end
     else
       respond_to do |format|
@@ -48,7 +48,7 @@ class CommentsController < ApplicationController
             locals: { comment: @comment }
           )
         end
-        format.html { redirect_to @comment.board, alert: t('comments.update.failure') }
+        format.html { redirect_to @comment.board, alert: t("comments.update.failure") }
       end
     end
   end
@@ -60,10 +60,10 @@ class CommentsController < ApplicationController
       @comment.destroy
       respond_to do |format|
         format.turbo_stream { render turbo_stream: turbo_stream.remove("comment_#{comment_id}") }
-        format.html { redirect_to @board, notice: t('comments.destroy.success') }
+        format.html { redirect_to @board, notice: t("comments.destroy.success") }
       end
     else
-      redirect_to @board, alert: t('comments.destroy.failure')
+      redirect_to @board, alert: t("comments.destroy.failure")
     end
   end
 

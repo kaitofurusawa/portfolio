@@ -28,6 +28,13 @@ services:
     image: seleniarm/standalone-chromium
     ports:
       - "4444:4444"
+  rubocop:
+    build: .
+    command: bundle exec rubocop
+    volumes:
+      - .:/app
+    depends_on:
+      - db
 
 volumes:
   postgres_data:

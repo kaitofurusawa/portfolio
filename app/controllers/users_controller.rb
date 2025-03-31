@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [ :show, :edit, :update ]
 
   def new
     @user = User.new
@@ -13,9 +13,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       auto_login(@user)
-      redirect_to root_path, notice: t('users.create.success')
+      redirect_to root_path, notice: t("users.create.success")
     else
-      flash.now[:alert] = t('users.create.failure')
+      flash.now[:alert] = t("users.create.failure")
       render :new, status: :unprocessable_entity
     end
   end
@@ -25,9 +25,9 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to user_path(@user), notice: t('users.update.success')
+      redirect_to user_path(@user), notice: t("users.update.success")
     else
-      flash.now[:alert] = t('users.update.failure')
+      flash.now[:alert] = t("users.update.failure")
       render :edit, status: :unprocessable_entity
     end
   end
