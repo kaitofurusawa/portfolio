@@ -28,15 +28,22 @@ ja:
           attributes:
             name:
               blank: "名前を入力してください"
+              too_long: "名前は%{count}文字以内で入力してください"
             email:
               blank: "メールアドレスを入力してください"
               taken: "このメールアドレスは既に使用されています"
+              invalid: "有効なメールアドレスを入力してください"
+              too_long: "メールアドレスは%{count}文字以内で入力してください"
             password:
               blank: "パスワードを入力してください"
               too_short: "パスワードは%{count}文字以上にしてください"
               confirmation: "パスワードと確認用パスワードが一致しません"
             password_confirmation:
+              blank: "確認用パスワードを入力してください"
               confirmation: "パスワードと確認用パスワードが一致しません"
+            profile_image:
+              content_type_invalid: "画像の形式が無効です (JPEG, PNG, WEBPのみ)"
+              too_large: "画像サイズは%{count}MB以下にしてください"
         board:
           attributes:
             title:
@@ -54,9 +61,6 @@ ja:
             content:
               blank: "コメントを入力してください"
               too_long: "コメントは%{count}文字以内で入力してください"
-
-      messages:
-        record_invalid: "バリデーションに失敗しました"
 
   buttons:
     login: "ログイン"

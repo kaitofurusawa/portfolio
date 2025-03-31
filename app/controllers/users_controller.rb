@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [ :show, :edit, :update ]
+  before_action :set_user, only: [:show, :edit, :update]
 
   def new
     @user = User.new
@@ -24,10 +24,15 @@ class UsersController < ApplicationController
   end
 
   def update
+    @original_profile_image = @user.profile_image if @user.profile_image.attached?
+
     if @user.update(user_params)
       redirect_to user_path(@user), notice: t("users.update.success")
     else
       flash.now[:alert] = t("users.update.failure")
+
+      @user.reload
+
       render :edit, status: :unprocessable_entity
     end
   end

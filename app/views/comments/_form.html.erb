@@ -2,7 +2,10 @@
   <div class="comment-form-container">
     <% if logged_in? %>
       <%= form_with model: [board, comment], data: { turbo_stream: true }, local: false, class: "comment-form", id: "new_comment_form" do |f| %>
-        <%= f.text_area :content, placeholder: t('placeholders.comment'), class: "form-input", data: { controller: "auto-resize" } %>
+        <%= f.text_area :content,
+              placeholder: t('placeholders.comment'),
+              class: "form-input #{'input-error' if f.object.errors[:content].any?}",
+              data: { controller: "auto-resize" } %>
 
         <% if f.object.errors[:content].any? %>
           <div class="error-message"><%= f.object.errors[:content].first %></div>
@@ -15,5 +18,3 @@
     <% end %>
   </div>
 <% end %>
-
-<%= javascript_include_tag "comments" %>

@@ -13,7 +13,7 @@
 
     <div class="form-group">
       <%= f.label :email, t('labels.email') %>
-      <%= f.email_field :email, class: "form-input #{'input-error' if @user.errors[:email].any?}" %>
+      <%= f.text_field :email, class: "form-input #{'input-error' if @user.errors[:email].any?}" %>
       <% if @user.errors[:email].any? %>
         <div class="error-message"><%= @user.errors[:email].first %></div>
       <% end %>

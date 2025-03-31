@@ -7,6 +7,6 @@ class Board < ApplicationRecord
   validates :content, presence: true, length: { maximum: 500 }
 
   validates :image,
-  content_type: [ "image/png", "image/jpeg", "image/webp" ],
-  size: { less_than: 5.megabytes, message: "は5MB以内の画像にしてください" }
+            content_type: { in: ["image/png", "image/jpeg", "image/webp"], message: I18n.t('errors.messages.content_type_invalid') },
+            size: { less_than: 5.megabytes, message: I18n.t('errors.messages.too_large', count: 5) }
 end

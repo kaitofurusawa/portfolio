@@ -9,11 +9,14 @@
         <%= button_to t('buttons.post'), new_board_path, method: :get, class: "post-btn" %>
 
         <%= link_to user_path(current_user), class: "mypage-btn" do %>
-          <% if current_user.profile_image.attached? %>
-            <%= image_tag current_user.profile_image, class: "user-icon" %>
-          <% else %>
-            <%= image_tag 'user_icon.png', class: "user-icon" %>
-          <% end %>
+          <% image =
+            if current_user.profile_image&.attached? && current_user.profile_image&.blob&.persisted?
+              url_for(current_user.profile_image)
+            else
+              'user_icon.png'
+            end %>
+
+          <%= image_tag image, class: "user-icon" %>
         <% end %>
       </div>
     <% else %>

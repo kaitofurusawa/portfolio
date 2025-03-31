@@ -1,7 +1,9 @@
 <%= turbo_frame_tag "comment_#{comment.id}" do %>
   <%= form_with model: [comment.board, comment], local: false do |f| %>
     <div class="form-group">
-      <%= f.text_area :content, class: "form-input" %>
+      <%= f.text_area :content,
+            class: "form-input #{'input-error' if f.object.errors[:content].any?}" %>
+
       <% if f.object.errors[:content].any? %>
         <div class="error-message"><%= f.object.errors[:content].first %></div>
       <% end %>
