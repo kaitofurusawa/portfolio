@@ -2,7 +2,6 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
   has_one_attached :profile_image
 
-  # 👇 ここ追加！
   has_many :boards, dependent: :destroy
   has_many :comments, dependent: :destroy
 

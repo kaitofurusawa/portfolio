@@ -5,9 +5,6 @@ ruby "3.2.2"
 # Rails 本体
 gem "rails", "~> 8.0.2"
 
-# Propshaft を削除（またはコメントアウト）
-# gem 'propshaft'
-
 # Sprockets を追加
 gem "sprockets-rails", "~> 3.5"
 gem "sprockets", "~> 4.2"
@@ -30,8 +27,6 @@ gem "database_cleaner-active_record"
 gem "parallel_tests"
 gem "spring"
 gem "spring-commands-rspec"
-
-# gem 'annotate'
 
 gem "sorcery"
 
@@ -60,26 +55,14 @@ gem "bootsnap", require: false
 gem "aws-sdk-s3", require: false
 
 group :development, :test do
-  # デバッグツール
-  # gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
-
-  # 静的解析（セキュリティチェック）
   gem "brakeman", require: false
-
-  # コードスタイル管理
   gem "rubocop-rails-omakase", require: false
-end
-
-group :development, :test do
   gem "rspec-rails"
   gem "factory_bot_rails"
 end
 
 group :development do
-  # Rails console で pry を使えるようにする
   gem "pry-rails"
-
-  # エラーページでコンソールを使う
   gem "web-console"
 end
 

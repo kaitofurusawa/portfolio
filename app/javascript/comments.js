@@ -1,6 +1,6 @@
 document.addEventListener("turbo:submit-end", (event) => {
   if (event.target.id === "new_comment_form" && event.detail.success) {
-    event.target.reset(); // 投稿後にフォームをクリア
+    event.target.reset();
   }
 });
 

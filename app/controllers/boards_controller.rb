@@ -57,6 +57,6 @@ class BoardsController < ApplicationController
   end
 
   def board_params
-    params.require(:board).permit(:title, :content, :image) # `image` を追加
+    params.require(:board).permit(:title, :content, :image)
   end
 end

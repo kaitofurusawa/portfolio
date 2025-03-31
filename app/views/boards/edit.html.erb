@@ -29,7 +29,6 @@
     </div>
   <% end %>
 
-  <!-- 削除ボタンは完全独立 -->
   <div class="button-group">
     <%= button_to t('buttons.delete'), board_path(@board), method: :delete, 
         class: "delete-btn", data: { confirm: t('boards.destroy.confirm') } %>

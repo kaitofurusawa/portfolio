@@ -6,7 +6,6 @@
       <%= image_tag(board.image.attached? ? url_for(board.image) : 'noimage.png', alt: board.title, class: "board-thumbnail") %>
       <h3><%= link_to board.title, board_path(board) %></h3>
 
-      <!-- 投稿者情報を追加 -->
       <div class="board-author">
         <%= link_to user_path(board.user), class: "user-link" do %>
           <div class="user-info">

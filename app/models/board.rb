@@ -3,7 +3,6 @@ class Board < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_one_attached :image
 
-  # 投稿バリデーション
   validates :title, presence: true, length: { maximum: 50 }
   validates :content, presence: true, length: { maximum: 500 }
 
