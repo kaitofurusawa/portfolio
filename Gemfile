@@ -70,10 +70,14 @@ group :development do
 
   # エラーページでコンソールを使う
   gem "web-console"
+
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
 end
 
 group :test do
-  # システムテスト
-  gem "capybara"
-  gem "selenium-webdriver"
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'webdrivers'
+  gem 'database_cleaner-active_record'
 end

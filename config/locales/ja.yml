@@ -55,6 +55,9 @@ ja:
               blank: "コメントを入力してください"
               too_long: "コメントは%{count}文字以内で入力してください"
 
+      messages:
+        record_invalid: "バリデーションに失敗しました"
+
   buttons:
     login: "ログイン"
     signup: "新規登録"

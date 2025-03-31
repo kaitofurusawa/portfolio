@@ -10,6 +10,7 @@ services:
       - "3000:3000"
     depends_on:
       - db
+      - selenium
     environment:
       - DATABASE_URL=postgres://postgres:password@db:5432/portfolio_development
       - RAILS_ENV=development
@@ -23,7 +24,11 @@ services:
       POSTGRES_DB: portfolio_development
     ports:
       - "5432:5432"
+  selenium:
+    image: seleniarm/standalone-chromium
+    ports:
+      - "4444:4444"
 
 volumes:
   postgres_data:
-  bundle:    # ← 追加した行
+  bundle:
