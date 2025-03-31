@@ -268,6 +268,8 @@ GEM
       version_gem (~> 1.1)
     orm_adapter (0.5.0)
     parallel (1.26.3)
+    parallel_tests (5.1.0)
+      parallel
     parser (3.3.7.1)
       ast (~> 2.4.1)
       racc
@@ -420,6 +422,9 @@ GEM
       bcrypt (~> 3.1)
       oauth (>= 0.6)
       oauth2 (~> 2.0)
+    spring (4.3.0)
+    spring-commands-rspec (1.0.4)
+      spring (>= 0.9.1)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -491,6 +496,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kaminari
+  parallel_tests
   pg (~> 1.5)
   pry-rails
   puma (~> 6.6)
@@ -503,6 +509,8 @@ DEPENDENCIES
   solid_cache
   solid_queue
   sorcery
+  spring
+  spring-commands-rspec
   sprockets (~> 4.2)
   sprockets-rails (~> 3.5)
   stimulus-rails

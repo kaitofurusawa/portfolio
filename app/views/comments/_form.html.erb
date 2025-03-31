@@ -1,13 +1,17 @@
 <%= turbo_frame_tag "comment_form" do %>
   <div class="comment-form-container">
-    <%= form_with model: [board, comment], data: { turbo_stream: true }, local: false, class: "comment-form", id: "new_comment_form" do |f| %>
-      <%= f.text_area :content, placeholder: t('placeholders.comment'), class: "form-input", data: { controller: "auto-resize" } %>
+    <% if logged_in? %>
+      <%= form_with model: [board, comment], data: { turbo_stream: true }, local: false, class: "comment-form", id: "new_comment_form" do |f| %>
+        <%= f.text_area :content, placeholder: t('placeholders.comment'), class: "form-input", data: { controller: "auto-resize" } %>
 
-      <% if f.object.errors[:content].any? %>
-        <div class="error-message"><%= f.object.errors[:content].first %></div>
+        <% if f.object.errors[:content].any? %>
+          <div class="error-message"><%= f.object.errors[:content].first %></div>
+        <% end %>
+
+        <%= f.submit t('buttons.submit_comment'), class: "post-btn" %>
       <% end %>
-
-      <%= f.submit t('buttons.submit_comment'), class: "post-btn" %>
+    <% else %>
+      <p><%= t('comments.login_required') %></p>
     <% end %>
   </div>
 <% end %>

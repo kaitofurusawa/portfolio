@@ -136,3 +136,4 @@ ja:
       success: "コメントを削除しました"
       failure: "コメントの削除に失敗しました"
     delete_confirm: "コメントを削除しますか？"
+    login_required: "ログイン中のみコメントを入力できます"

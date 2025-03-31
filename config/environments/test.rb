@@ -52,4 +52,7 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   config.hosts.clear
+  
+  # Set cache_classes to false to enable Spring reloading
+  config.cache_classes = false
 end

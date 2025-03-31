@@ -27,6 +27,10 @@ gem "sassc-rails"
 
 gem 'database_cleaner-active_record'
 
+gem 'parallel_tests'
+gem 'spring'
+gem 'spring-commands-rspec'
+
 # gem 'annotate'
 
 gem 'sorcery'
@@ -66,15 +70,17 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 end
 
-group :development do
-  # Rails console で pry を使えるようにする
-  gem "pry-rails"
-
-  # エラーページでコンソールを使う
-  gem "web-console"
-
+group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+end
+
+group :development do
+  # Rails console で pry を使えるようにする
+  gem 'pry-rails'
+
+  # エラーページでコンソールを使う
+  gem 'web-console'
 end
 
 group :test do

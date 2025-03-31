@@ -1,48 +1,48 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
-  it "有効なユーザー情報で保存できる" do
-    expect(build(:user)).to be_valid
+RSpec.describe "Users", type: :request do
+  describe "GET /users" do
+    it "一覧ページが表示される" do
+      get users_path
+      expect(response).to have_http_status(:success)
+      expect(response.body).to include("ユーザー一覧")
+    end
   end
 
-  it "名前が空だと無効" do
-    user = build(:user, name: "")
-    expect(user).not_to be_valid
+  describe "GET /users/:id" do
+    it "詳細ページが表示される" do
+      user = create(:user)
+      get user_path(user)
+      expect(response).to have_http_status(:success)
+      expect(response.body).to include(user.name)
+    end
   end
 
-  it "名前が30文字を超えると無効" do
-    user = build(:user, name: "a" * 31)
-    expect(user).not_to be_valid
+  describe "POST /users" do
+    it "新しいユーザーを作成できる" do
+      user_params = attributes_for(:user)
+      expect {
+        post users_path, params: { user: user_params }
+      }.to change(User, :count).by(1)
+
+      expect(response).to redirect_to(User.last)
+    end
+
+    it "無効なパラメータの場合はエラーが表示される" do
+      user_params = attributes_for(:user, name: nil)
+      post users_path, params: { user: user_params }
+      expect(response.body).to include("エラーが発生しました")
+    end
   end
 
-  it "メールアドレスが空だと無効" do
-    user = build(:user, email: "")
-    expect(user).not_to be_valid
-  end
+  describe "DELETE /users/:id" do
+    it "ユーザーを削除できる" do
+      user = create(:user)
+      expect {
+        delete user_path(user)
+      }.to change(User, :count).by(-1)
 
-  it "メールアドレスが重複していると無効" do
-    create(:user, email: "test@example.com")
-    user = build(:user, email: "test@example.com")
-    expect(user).not_to be_valid
-  end
-
-  it "メールアドレスが255文字を超えると無効" do
-    user = build(:user, email: "a" * 244 + "@example.com")
-    expect(user).not_to be_valid
-  end
-
-  it "パスワードが空だと無効" do
-    user = build(:user, password: "", password_confirmation: "")
-    expect(user).not_to be_valid
-  end
-
-  it "パスワードが6文字未満だと無効" do
-    user = build(:user, password: "123", password_confirmation: "123")
-    expect(user).not_to be_valid
-  end
-
-  it "プロフィール画像が未添付でも保存できる" do
-    user = build(:user)
-    expect(user).to be_valid
+      expect(response).to redirect_to(users_path)
+    end
   end
 end
