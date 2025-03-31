@@ -25,6 +25,8 @@ gem 'faker'
 
 gem "sassc-rails"
 
+gem 'database_cleaner-active_record'
+
 # gem 'annotate'
 
 gem 'sorcery'

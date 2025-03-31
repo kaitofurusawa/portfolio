@@ -41,7 +41,7 @@ RSpec.describe User, type: :model do
     expect(user).not_to be_valid
   end
 
-  it "プロファイル画像が未添付でも保存できる" do
+  it "プロフィール画像が未添付でも保存できる" do
     user = build(:user)
     expect(user).to be_valid
   end
