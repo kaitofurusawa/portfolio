@@ -11,6 +11,14 @@
     </div>
 
     <div class="form-group">
+      <%= f.label :email, t('activerecord.attributes.user.email') %>
+      <%= f.email_field :email, class: "form-input #{'input-error' if @user.errors[:email].any?}" %>
+      <% if @user.errors[:email].any? %>
+        <div class="error-message"><%= @user.errors[:email].first %></div>
+      <% end %>
+    </div>
+
+    <div class="form-group">
       <%= f.label :profile_image, t('activerecord.attributes.user.profile_image') %>
       <%= f.file_field :profile_image, class: "form-input #{'input-error' if @user.errors[:profile_image].any?}" %>
       <% if @user.errors[:profile_image].any? %>
@@ -20,6 +28,10 @@
 
     <%= f.submit t('users.edit.submit'), class: "edit-btn" %>
   <% end %>
+
+  <div class="form-group">
+    <%= link_to t('users.edit.password_reset_link'), new_password_reset_path %>
+  </div>
 
   <%= link_to t('users.edit.back'), user_path(@user), class: "back-btn" %>
 </div>

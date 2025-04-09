@@ -36,7 +36,7 @@ ja:
               too_long: "メールアドレスは%{count}文字以内で入力してください"
             password:
               blank: "パスワードを入力してください"
-              too_short: "パスワードは%{count}文字以上にしてください"
+              too_short: "パスワードは最低でも%{count}文字以上必要です"
               confirmation: "パスワードと確認用パスワードが一致しません"
             password_confirmation:
               blank: "確認用パスワードを入力してください"
@@ -111,6 +111,7 @@ ja:
       title: "プロフィール編集"
       submit: "更新"
       back: "マイページに戻る"
+      password_reset_link: "パスワードの再設定はこちら"
     update:
       success: "プロフィールを更新しました"
       failure: "プロフィールの更新に失敗しました"
@@ -141,3 +142,26 @@ ja:
       failure: "コメントの削除に失敗しました"
     delete_confirm: "コメントを削除しますか？"
     login_required: "ログイン中のみコメントを入力できます"
+
+  password_resets:
+    create:
+      sent: "パスワードリセットのリンクを送信しました。"
+      email_not_found: "メールアドレスが見つかりません。"
+    edit:
+      title: "パスワードのリセット"
+      submit: "パスワードを更新する"
+      invalid_token: "無効なトークンです。"
+    update:
+      success: "パスワードがリセットされました。"
+      failure: "パスワードのリセットに失敗しました。"
+    new:
+      title: "パスワードリセット"
+      submit: "送信"
+      link: "パスワードをお忘れの方はこちら"
+
+  password_mailer:
+    subject: "パスワードリセット"
+    greeting: "%{user}様"
+    instruction: "以下のリンクをクリックしてパスワードをリセットしてください。"
+    reset_link: "パスワードリセット"
+    goodbye: "よろしくお願いいたします。"

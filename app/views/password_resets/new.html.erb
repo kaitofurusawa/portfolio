@@ -1,0 +1,18 @@
+<h2><%= t('password_resets.new.title') %></h2>
+
+<div class="password-reset-form-container">
+  <%= form_with model: @user, url: password_resets_path, local: true do |f| %>
+    <div class="form-group">
+      <%= f.label :email, t('activerecord.attributes.user.email') %>
+      <%= f.email_field :email, class: "form-input #{'input-error' if @user&.errors[:email].any? || flash.now[:alert].present?}" %>
+
+      <% if @user&.errors[:email].any? %>
+        <div class="error-message"><%= @user.errors[:email].first %></div>
+      <% elsif flash.now[:alert].present? %>
+        <div class="error-message"><%= flash.now[:alert] %></div>
+      <% end %>
+    </div>
+
+    <%= f.submit t('password_resets.new.submit'), class: 'reset-btn login-btn' %>
+  <% end %>
+</div>

@@ -25,6 +25,16 @@
     background-color: #f2dede;
     color: #a94442;
   }
+
+  &.success {
+    background-color: #d9edf7;
+    color: #31708f;
+  }
+
+  &.info {
+    background-color: #fcf8e3;
+    color: #8a6d3b;
+  }
 }
 
 .page-title {
