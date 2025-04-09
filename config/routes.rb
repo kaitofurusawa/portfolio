@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "static_pages/terms"
+  get "static_pages/privacy"
   get "password_resets/new"
   get "password_resets/create"
   get "password_resets/edit"
@@ -22,6 +24,10 @@ Rails.application.routes.draw do
 
   # パスワードリセット関連（sorcery用）
   resources :password_resets, only: [:new, :create, :edit, :update]
+
+  # 利用規約とプライバシーポリシー
+  get 'terms', to: 'static_pages#terms'
+  get 'privacy', to: 'static_pages#privacy'
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

@@ -2,5 +2,9 @@
   <div class="container footer-container">
     <h2><%= link_to t('site.title'), root_path, class: "site-title-link" %></h2>
     <p id="footer-text"><%= t('footer.text') %></p>
+      <ul class="footer-links">
+        <li><%= link_to t('footer.terms'), terms_path, class: "footer-link" %></li>
+        <li><%= link_to t('footer.privacy'), privacy_path, class: "footer-link" %></li>
+      </ul>
   </div>
 </footer>
