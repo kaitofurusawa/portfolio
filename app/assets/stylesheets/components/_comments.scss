@@ -6,24 +6,37 @@
   border-radius: 8px;
   background-color: #fff;
   text-align: center;
+
+  @media (max-width: 768px) {
+    padding: 10px; // モバイルではパディングを縮小
+  }
 }
 
 .comment-title {
   text-align: center;
   font-size: 24px;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 20px; // モバイルではフォントサイズを縮小
+    margin-bottom: 15px;
+  }
 }
 
 #comments {
   display: flex;
   flex-direction: column;
   align-items: center; // 中央寄せ
+
+  @media (max-width: 768px) {
+    align-items: stretch; // モバイルでは幅を広げる
+  }
 }
 
 .comment-header {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center; // アイコンと名前を縦方向に中央揃え
+  justify-content: center; // 横方向にも中央揃え
   gap: 10px;
   margin-bottom: 10px;
 
@@ -32,57 +45,94 @@
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
+
+    @media (max-width: 768px) {
+      width: 30px; // モバイルではアイコンサイズを縮小
+      height: 30px;
+    }
   }
 
   .comment-user-name {
     font-weight: bold;
     font-size: 18px;
+
+    @media (max-width: 768px) {
+      font-size: 16px; // モバイルではフォントサイズを縮小
+    }
   }
 }
 
 .comment-content {
   font-size: 16px;
   margin-bottom: 10px;
+
+  @media (max-width: 768px) {
+    font-size: 14px; // モバイルではフォントサイズを縮小
+    margin-bottom: 8px;
+  }
 }
 
 .comment-actions {
   display: flex;
   justify-content: center;
   gap: 10px;
+  flex-wrap: wrap; // ボタンがはみ出さないように折り返しを有効化
 
-  .edit-btn {
+  @media (max-width: 768px) {
+    justify-content: center; // モバイルでも中央揃え
+  }
+
+  .edit-btn, .delete-btn {
     @include button-style(#3498db, #2980b9);
-    padding: 10px 15px; // 現状維持（高さそのまま）
     font-size: 16px;
+    padding: 10px 15px; // 統一したボタンサイズ
+    border-radius: 5px; // ボタンの角丸を統一
+    display: flex;
+    align-items: center; // テキストを縦中央揃え
+    justify-content: center; // テキストを横中央揃え
+
+    @media (max-width: 768px) {
+      font-size: 14px; // モバイルではフォントサイズを縮小
+      padding: 10px 15px; // ボタンサイズを統一
+      width: 100px; // モバイルで幅を揃える
+    }
   }
 
   .delete-btn {
-    @include button-style(#e74c3c, #c0392b);
-    padding: 3px 15px;   // 少し小さめ
-    font-size: 16px;     // 文字もやや小さく
-    height: 38px;        // 高さ固定
-    min-width: 80px;     // 最低幅を持たせてバランス調整
-    display: flex;
-    align-items: center;  // 縦中央揃え
-    justify-content: center; // 横中央も念のため
+    @include button-style(#e74c3c, #c0392b); // 削除ボタンの色を指定
   }
 }
-
 
 .comment-form-container {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 
+  @media (max-width: 768px) {
+    margin-top: 15px; // モバイルでは間隔を縮小
+  }
+
   .comment-form {
     display: flex;
     align-items: center;
     gap: 10px;
 
+    @media (max-width: 768px) {
+      flex-direction: column; // モバイルでは縦並び
+      gap: 5px; // ギャップを縮小
+      width: 100%; // フォーム全体を広げる
+    }
+
     .post-btn {
       @include button-style(#3498db, #2980b9);
       white-space: nowrap;
       height: 44px;
+
+      @media (max-width: 768px) {
+        font-size: 14px; // モバイルではフォントサイズを縮小
+        height: 40px; // ボタンをコンパクトに
+        width: 100%; // ボタン幅を100%に
+      }
     }
   }
 }
@@ -94,6 +144,11 @@ textarea.form-input {
   font-size: 16px;
   resize: vertical;
   box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    width: 100%; // モバイルでは幅を100%に
+    font-size: 14px; // フォントサイズを縮小
+  }
 }
 
 .comment-content p {

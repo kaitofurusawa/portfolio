@@ -2,9 +2,20 @@
 
 .board-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr); // デスクトップでは4列
   gap: 20px;
   padding: 20px;
+
+  @media (max-width: 1024px) { // タブレット向け
+    grid-template-columns: repeat(2, 1fr); // 2列に変更
+    gap: 15px;
+  }
+
+  @media (max-width: 768px) { // モバイル向け
+    grid-template-columns: 1fr; // 1列に変更
+    gap: 10px;
+    padding: 10px;
+  }
 }
 
 .board-card {
@@ -13,18 +24,43 @@
   box-shadow: $box-shadow;
   padding: 15px;
   text-align: center;
+  overflow: hidden; // 親の幅を超える要素を隠す
+
+  @media (max-width: 768px) { // モバイル向け
+    padding: 10px; // コンテンツの余白を少し小さく
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+    word-wrap: break-word; // 長い単語を折り返す
+    overflow-wrap: break-word; // 親幅を超えた場合に折り返す
+    white-space: normal; // 折り返しを有効化
+    text-align: center; // タイトルを中央揃え
+    line-height: 1.4; // 行間を調整
+    max-width: 100%; // 親要素の幅を超えないようにする
+  }
 }
 
 .board-thumbnail {
-  width: 250px;
-  height: 140px;
+  width: 100%; // 幅を親要素に合わせる
+  height: auto; // 高さを自動調整
   object-fit: cover;
   border-radius: $border-radius;
+
+  @media (max-width: 768px) { // モバイル向け
+    height: 120px; // モバイルで少し小さく
+  }
 }
 
 .pagination {
   text-align: center;
   margin-top: 20px;
+
+  @media (max-width: 768px) { // モバイル向け
+    margin-top: 15px; // 余白を調整
+  }
 }
 
 .board-detail {
@@ -32,19 +68,45 @@
   margin: 0 auto;
   text-align: center;
 
-  .board-image {
-    width: 100%;
-    max-height: 400px;
-    object-fit: cover;
+  .board-title {
+    font-size: 24px;
+    font-weight: bold;
     margin-bottom: 20px;
+    word-wrap: break-word; // 長い単語を折り返す
+    overflow-wrap: break-word; // 古いブラウザ対応
+    white-space: normal; // 折り返しを有効化
+    text-align: center; // 中央揃えを維持
   }
 
   .board-content {
     font-size: 18px;
     margin-bottom: 20px;
+    word-wrap: break-word; // 長い単語を折り返す
+    overflow-wrap: break-word; // 親幅を超えたときに折り返す
+    white-space: normal; // 折り返しを有効化
+
+    @media (max-width: 768px) { // モバイル向け
+      font-size: 16px; // フォントサイズをコンパクトに
+    }
+  }
+
+  .board-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    margin-bottom: 20px;
+
+    @media (max-width: 768px) { // モバイル向け
+      max-height: 300px; // 高さを少し小さく
+    }
   }
 
   .edit-btn {
     @include button-style(#3498db, #2980b9);
+
+    @media (max-width: 768px) { // モバイル向け
+      font-size: 14px; // ボタンのフォントサイズを調整
+      padding: 8px 12px; // ボタンのパディングを調整
+    }
   }
 }

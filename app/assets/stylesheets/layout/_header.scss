@@ -1,33 +1,102 @@
 .site-header {
-  background-color: #818181;
-  color: white;
+  background-color: #818181; // 背景色を維持
+  color: white; // テキストカラーを維持
   width: 100%;
   margin: 0;
   box-sizing: border-box;
+  text-align: center; // 全体的に中央寄せ
 
   .header-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: row; // PC表示時は横並び
+    align-items: center; // 子要素を中央揃え
+    justify-content: space-between; // 子要素を左右に配置
     width: 100%;
     padding: 15px 30px;
-    box-sizing: border-box;  // ★ 追加！はみ出し防止！
-  }
+    box-sizing: border-box; // ★ はみ出し防止！
 
-  .title h1 {
-    margin: 0;
-    font-size: 24px;
-    line-height: 36px;
-
-    .site-title-link {
-      color: white;
-      text-decoration: none;
-      display: inline-block;
+    @media (max-width: 768px) {
+      flex-direction: column; // モバイル時は縦並びに変更
+      padding: 15px 15px; // モバイルでパディングを調整
+      justify-content: center; // 子要素を上下中央揃え
     }
   }
 
-  .auth-buttons, .user-nav {
+  .title {
+    text-align: left; // PC時は左寄せ
+    h1 {
+      margin: 0; // タイトルの余白を削除
+      font-size: 24px; // タイトルを大きく
+      line-height: 36px;
+      white-space: nowrap; // テキストを改行させない
+      overflow: hidden; // はみ出す部分を非表示
+      text-overflow: ellipsis; // 省略記号を表示
+
+      .site-title-link {
+        color: white; // タイトルリンクの色を維持
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      @media (max-width: 768px) {
+        font-size: 24px; // モバイルで少し小さく
+        line-height: 30px;
+        margin-bottom: 20px; // モバイル時に下に余白を追加
+      }
+    }
+  }
+
+  .auth-buttons {
     display: flex;
-    gap: 12px;
+    gap: 15px; // ボタン間の余白を設定
+    margin-top: 0; // PC時の余白を削除
+    justify-content: flex-end; // PC時は右寄せ
+
+    @media (max-width: 768px) {
+      margin-top: 10px; // モバイル時に余白を追加
+      justify-content: center; // モバイル時は中央揃え
+    }
+
+    .login-button {
+      white-space: nowrap; // テキストを改行させない
+      padding: 10px 20px; // ボタンのサイズを調整
+      font-size: 16px; // ボタンのフォントサイズ
+      border-radius: 5px; // ボタンの角丸
+      background-color: #3498db; // ログインボタンの背景色（青）
+      color: white; // テキストの色
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #2980b9; // ホバー時の色
+      }
+
+      @media (max-width: 768px) {
+        padding: 8px 15px; // モバイルでボタンをコンパクトに
+        font-size: 14px;
+      }
+    }
+
+    .register-button {
+      white-space: nowrap; // テキストを改行させない
+      padding: 10px 20px; // ボタンのサイズを調整
+      font-size: 16px; // ボタンのフォントサイズ
+      border-radius: 5px; // ボタンの角丸
+      background-color: #28a745; // 新規登録ボタンの背景色（緑）
+      color: white; // テキストの色
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #218838; // ホバー時の色（濃い緑）
+      }
+
+      @media (max-width: 768px) {
+        padding: 8px 15px; // モバイルでボタンをコンパクトに
+        font-size: 14px;
+      }
+    }
   }
 }

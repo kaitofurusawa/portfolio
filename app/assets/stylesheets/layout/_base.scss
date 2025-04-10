@@ -4,10 +4,19 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding: 0 10px; // 狭い画面で余白を調整
+  }
 }
 
 .site-main {
   padding: 20px 0;
+
+  @media (max-width: 768px) {
+    padding: 15px 0; // モバイルでは少し狭く
+  }
 }
 
 .flash {
@@ -35,12 +44,22 @@
     background-color: #fcf8e3;
     color: #8a6d3b;
   }
+
+  @media (max-width: 768px) {
+    font-size: 14px; // モバイルでフォントを小さく
+    padding: 8px 12px; // スペースを調整
+  }
 }
 
 .page-title {
-  font-size: 28px;  // 何切るドットコムタイトルと合わせる
+  font-size: 28px; // 何切るドットコムタイトルと合わせる
   margin-left: 30px; // 左に余白
   color: black;
+
+  @media (max-width: 768px) {
+    font-size: 22px; // 小さい画面では文字を小さく
+    margin-left: 10px; // 余白を小さく
+  }
 }
 
 // ボタンの並び方（共通レイアウト用）
@@ -48,6 +67,12 @@
   display: flex;
   gap: 10px;
   justify-content: center; // 中央寄せ
+  flex-wrap: wrap; // 狭い画面で折り返す
+
+  @media (max-width: 768px) {
+    flex-direction: column; // モバイルでは縦並び
+    align-items: center;
+  }
 }
 
 .form-group {
@@ -58,6 +83,10 @@
   label {
     font-size: 16px;
     margin-bottom: 8px;
+
+    @media (max-width: 768px) {
+      font-size: 14px; // モバイルで文字を小さく
+    }
   }
 
   .form-input,
@@ -69,6 +98,11 @@
     box-sizing: border-box;
     text-align: left;
     border: 1px solid #ccc;
+
+    @media (max-width: 768px) {
+      max-width: 100%; // モバイルで幅をフルに
+      font-size: 14px; // フォントサイズを調整
+    }
   }
 
   .form-input.input-error {
@@ -80,6 +114,10 @@
   color: red;
   font-size: 0.9em;
   margin-top: 4px;
+
+  @media (max-width: 768px) {
+    font-size: 0.8em; // モバイルで文字を小さく
+  }
 }
 
 textarea.form-input {
@@ -88,6 +126,10 @@ textarea.form-input {
   font-size: 16px;
   box-sizing: border-box;
   text-align: left;
+
+  @media (max-width: 768px) {
+    font-size: 14px; // モバイルでフォントサイズを調整
+  }
 }
 
 textarea.form-input.input-error {

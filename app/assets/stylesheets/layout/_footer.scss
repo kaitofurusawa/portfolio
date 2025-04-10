@@ -7,6 +7,10 @@
     color: #fff;
     font-size: 24px;
     margin-bottom: 10px;
+
+    @media (max-width: 768px) { // モバイル向け
+      font-size: 20px; // フォントサイズを縮小
+    }
   }
 
   .site-title-link {
@@ -17,6 +21,10 @@
   #footer-text {
     color: #fff;
     font-size: 14px;
+
+    @media (max-width: 768px) { // モバイル向け
+      font-size: 12px; // フォントサイズを縮小
+    }
   }
 
   .footer-links {
@@ -26,6 +34,11 @@
     display: flex;
     justify-content: center;
     gap: 15px;
+
+    @media (max-width: 768px) { // モバイル向け
+      flex-direction: column; // 縦並びに変更
+      gap: 10px; // 間隔を調整
+    }
 
     .footer-link {
       color: white;
