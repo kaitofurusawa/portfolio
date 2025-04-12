@@ -4,24 +4,48 @@
   text-align: center;
   font-size: 28px;
   margin-bottom: 30px;
+
+  @media (max-width: 768px) {
+    font-size: 22px; // モバイル向けにフォントサイズを縮小
+    margin-bottom: 20px;
+  }
 }
 
 .signup-form-container {
   max-width: 400px;
   margin: 50px auto;
   text-align: center;
+
+  @media (max-width: 768px) {
+    max-width: 90%; // モバイルで幅を90%に調整
+    margin: 30px auto; // 上下の余白を縮小
+  }
 }
 
 .form-group {
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 15px; // モバイルで余白を縮小
+  }
 }
 
 .form-input {
   width: 100%;
   padding: 10px;
   font-size: 16px;
+
+  @media (max-width: 768px) {
+    padding: 8px; // モバイルでパディングを縮小
+    font-size: 14px; // フォントサイズを縮小
+  }
 }
 
 .signup-btn {
   @include button-style(#2ecc71, #27ae60); // 緑系（お好みで色変えてOK）
+
+  @media (max-width: 768px) {
+    font-size: 14px; // モバイルでフォントサイズを縮小
+    padding: 10px 15px; // ボタンサイズ調整
+  }
 }

@@ -20,7 +20,8 @@ class User < ApplicationRecord
             presence: true,
             length: { minimum: 6 },
             confirmation: true,
-            if: :validate_password?
+            if: :validate_password?,
+            allow_nil: true
 
   validates :profile_image,
             content_type: { in: %w[image/png image/jpeg image/webp], message: I18n.t('errors.messages.content_type_invalid') },
