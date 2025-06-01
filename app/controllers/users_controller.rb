@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @boards = @user.boards.order(created_at: :desc)
   end
 
   def create
@@ -47,6 +48,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(
       :name,
       :email,
+      :profile,
       :profile_image,
       :password,
       :password_confirmation

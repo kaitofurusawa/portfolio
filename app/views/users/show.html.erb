@@ -1,5 +1,5 @@
 <h2 class="section-title">
-  <%= current_user == @user ? t('titles.mypage') : "#{@user.name} さんのページ" %>
+  <%= current_user == @user ? t('titles.mypage') : "#{@user.name} #{t('labels.guest_suffix', default: 'さんのページ')}" %>
 </h2>
 
 <div class="mypage-container">
@@ -16,5 +16,39 @@
   <% if current_user == @user %>
     <%= link_to t('buttons.edit'), edit_user_path(@user), class: "edit-btn" %>
     <%= button_to t('buttons.logout'), logout_path, method: :delete, class: "logout-btn" %>
+  <% end %>
+</div>
+
+<!-- プロフィール表示部分 -->
+<div class="user-profile" style="margin-top: 2em;">
+  <h3><%= t('activerecord.attributes.user.profile') %></h3>
+  <p><%= @user.profile.presence || t('users.show.no_profile') %></p>
+</div>
+
+<!-- 何切る投稿一覧（カードデザイン） -->
+<div class="user-boards" style="margin-top: 2em;">
+  <h3><%= t('users.show.boards_title') %></h3>
+  <% if @boards.any? %>
+    <div class="board-grid">
+      <% @boards.each do |board| %>
+        <div class="board-card">
+          <%= image_tag(board.image.attached? ? url_for(board.image) : 'noimage.png', alt: board.title, class: "board-thumbnail") %>
+          <h4><%= link_to board.title, board_path(board) %></h4>
+          <p class="board-description">
+            <%= board.respond_to?(:description) ? board.description.truncate(50) : "" %>
+          </p>
+          <div class="board-author">
+            <% if board.user.profile_image.attached? %>
+              <%= image_tag board.user.profile_image, class: "user-icon" %>
+            <% else %>
+              <%= image_tag 'user_icon.png', class: "user-icon" %>
+            <% end %>
+            <span class="user-name"><%= board.user.name %></span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p><%= t('users.show.no_boards') %></p>
   <% end %>
 </div>
