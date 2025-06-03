@@ -4,6 +4,8 @@ class BoardsController < ApplicationController
 
   def new
     @board = Board.new
+    @board.build_poll unless @board.poll
+    2.times { @board.poll.poll_options.build }
   end
 
   def index
@@ -16,6 +18,9 @@ class BoardsController < ApplicationController
   end
 
   def edit
+    @board.build_poll unless @board.poll
+    # 選択肢が1個もなければ2つはbuildしておく
+    @board.poll.poll_options.build while @board.poll.poll_options.size < 2
   end
 
   def create
@@ -57,6 +62,12 @@ class BoardsController < ApplicationController
   end
 
   def board_params
-    params.require(:board).permit(:title, :content, :image)
+    params.require(:board).permit(
+      :title, :content, :image,
+      poll_attributes: [
+        :question,
+        poll_options_attributes: [:content, :_destroy]
+      ]
+    )
   end
 end

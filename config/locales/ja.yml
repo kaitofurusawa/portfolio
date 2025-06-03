@@ -79,6 +79,8 @@ ja:
     submit_post: "投稿"
     comment: "コメントする"
     submit_comment: "コメントする"
+    add_option: "選択肢を追加"
+    delete_option: "選択肢を削除"
 
   titles:
     login: "ログイン"
@@ -139,6 +141,10 @@ ja:
       success: "掲示板を削除しました"
       failure: "削除できませんでした"
     unauthorized: "この操作を行う権限がありません"
+    poll:
+      legend: "アンケート（任意）"
+      question: "アンケートの質問"
+      option: "選択肢"
 
   comments:
     create:
@@ -180,3 +186,7 @@ ja:
     filled_alt: "ブックマーク解除"
     outline_alt: "ブックマーク"
     confirm_unbookmark: "お気に入り解除しますか？"
+
+  polls:
+    errors:
+      at_least_two_options: "選択肢は2つ以上入力してください"

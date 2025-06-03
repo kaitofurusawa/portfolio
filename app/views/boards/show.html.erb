@@ -26,6 +26,19 @@
     <p><%= simple_format(@board.content) %></p>
   </div>
 
+  <!-- ▼アンケートがある場合に表示 -->
+  <% if @board.poll.present? %>
+    <div class="poll-section">
+      <h3 class="poll-question"><%= t('boards.poll.question') %>: <%= @board.poll.question %></h3>
+      <ul class="poll-options">
+        <% @board.poll.poll_options.each do |option| %>
+          <li><%= option.content %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <!-- ▲ここまで -->
+
   <% if current_user == @board.user %>
     <div class="button-group">
       <%= link_to t('buttons.edit'), edit_board_path(@board), class: "edit-btn" %>

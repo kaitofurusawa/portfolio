@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_03_142443) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_03_171436) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -69,6 +69,22 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_03_142443) do
     t.datetime "updated_at", null: false
     t.index ["board_id"], name: "index_comments_on_board_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "poll_options", force: :cascade do |t|
+    t.string "content"
+    t.bigint "poll_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["poll_id"], name: "index_poll_options_on_poll_id"
+  end
+
+  create_table "polls", force: :cascade do |t|
+    t.string "question"
+    t.bigint "board_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["board_id"], name: "index_polls_on_board_id"
   end
 
   create_table "solid_queue_blocked_executions", force: :cascade do |t|
@@ -214,6 +230,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_03_142443) do
   add_foreign_key "bookmarks", "users"
   add_foreign_key "comments", "boards"
   add_foreign_key "comments", "users"
+  add_foreign_key "poll_options", "polls"
+  add_foreign_key "polls", "boards"
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_claimed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_failed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade

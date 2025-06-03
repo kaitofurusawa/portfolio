@@ -26,6 +26,36 @@
       <% end %>
     </div>
 
+    <!-- ▼アンケート（任意）ここから追加 -->
+    <fieldset>
+      <legend><%= t('boards.poll.legend') %></legend>
+      <div class="form-group">
+        <%= f.fields_for :poll do |pf| %>
+          <%= pf.label :question, t('boards.poll.question') %>
+          <%= pf.text_field :question, class: "form-input #{'input-error' if pf.object.question.present? && (@board.poll.errors[:question].any? || @board.poll.errors[:base].any?) }" %>
+
+          <% if pf.object.question.present? && @board.poll.errors[:question].any? %>
+            <div class="error-message"><%= @board.poll.errors[:question].first %></div>
+          <% end %>
+          <div id="poll-options">
+            <% pf.object.poll_options.each_with_index do |option, i| %>
+              <div class="poll-option-fields">
+                <label><%= t('boards.poll.option') %></label>
+                <input type="text"
+                      name="board[poll_attributes][poll_options_attributes][<%= i %>][content]"
+                      value="<%= option.content %>"
+                      class="form-input" />
+                <button type="button" class="delete-option-btn"><%= t('buttons.delete_option') %></button>
+              </div>
+            <% end %>
+          </div>
+          <button type="button" id="add-option-btn"><%= t('buttons.add_option') %></button>
+        <% end %>
+      </div>
+    </fieldset>
+    <%= render "poll_option_fields" %>
+    <!-- ▲アンケートここまで -->
+
     <%= f.submit t('buttons.submit_post'), class: "edit-btn" %>
   <% end %>
 
