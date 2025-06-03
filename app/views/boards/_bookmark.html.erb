@@ -1,0 +1,11 @@
+<turbo-frame id="bookmark-button-<%= board.id %>">
+  <% if board.bookmarks.exists?(user: current_user) %>
+    <%= button_to board_bookmark_path(board), method: :delete, form: { data: { turbo_confirm: t('bookmarks.confirm_unbookmark') } }, remote: true, class: "bookmark-btn" do %>
+      <%= image_tag "bookmark-filled.svg", alt: t('bookmarks.filled_alt'), class: "bookmark-icon" %>
+    <% end %>
+  <% else %>
+    <%= button_to board_bookmark_path(board), method: :post, remote: true, class: "bookmark-btn" do %>
+      <%= image_tag "bookmark-outline.svg", alt: t('bookmarks.outline_alt'), class: "bookmark-icon" %>
+    <% end %>
+  <% end %>
+</turbo-frame>

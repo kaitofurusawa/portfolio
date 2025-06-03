@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   # 掲示板（boards）のルーティング
   resources :boards do
     resources :comments, only: [ :create, :update, :destroy, :edit ]
+    resource :bookmark, only: [:create, :destroy], module: :boards
   end
 
   # パスワードリセット関連（sorcery用）

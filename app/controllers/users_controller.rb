@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @boards = @user.boards.order(created_at: :desc)
+    @bookmarked_boards = @user.bookmarked_boards.includes(:user).order("bookmarks.created_at DESC")
   end
 
   def create

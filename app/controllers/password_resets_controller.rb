@@ -7,7 +7,7 @@ class PasswordResetsController < ApplicationController
     @user = User.find_by(email: params.dig(:user, :email))
 
     if @user
-      @user.generate_password_reset_token!
+      @user.generate_reset_password_token!
       PasswordMailer.with(user: @user).password_reset.deliver_now
       flash[:notice] = t('password_resets.create.sent')
       redirect_to root_path
@@ -19,24 +19,24 @@ class PasswordResetsController < ApplicationController
   end
 
   def edit
-    @user = User.find_by(password_reset_token: params[:id])
-    unless @user&.password_reset_token_valid?
+    @user = User.find_by(reset_password_token: params[:id])
+    unless @user&.reset_password_token_valid?
       flash[:alert] = t('password_resets.edit.expired')
       redirect_to new_password_reset_path
     end
   end
 
   def update
-    @user = User.find_by(password_reset_token: params[:id])
+    @user = User.find_by(reset_password_token: params[:id])
   
-    if @user.nil? || !@user.password_reset_token_valid?
+    if @user.nil? || !@user.reset_password_token_valid?
       flash[:alert] = t('password_resets.edit.expired_token')
       redirect_to new_password_reset_path
       return
     end
   
     if @user.update(user_params)
-      @user.clear_password_reset_token!
+      @user.clear_reset_password_token!
       flash[:notice] = t('password_resets.update.success')
   
       if logged_in?

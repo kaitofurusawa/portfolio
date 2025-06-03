@@ -123,6 +123,8 @@ ja:
       no_profile: "未設定"
       no_boards: "投稿がありません。"
       boards_title: "投稿した何切る"
+      bookmarks_title: "ブックマーク"
+      no_bookmarks: "ブックマークした投稿はありません。"
 
   boards:
     create:
@@ -173,3 +175,8 @@ ja:
     instruction: "以下のリンクをクリックしてパスワードをリセットしてください。"
     reset_link: "パスワードリセット"
     goodbye: "よろしくお願いいたします。"
+
+  bookmarks:
+    filled_alt: "ブックマーク解除"
+    outline_alt: "ブックマーク"
+    confirm_unbookmark: "お気に入り解除しますか？"

@@ -14,6 +14,7 @@ body {
 @import "components/pagination";  // ページネーション
 @import "components/comments";  // コメント
 @import "components/user";  // ユーザー
+@import "components/bookmark"; // ブックマーク
 
 // 各ページのスタイル
 @import "pages/home"; // トップページ
