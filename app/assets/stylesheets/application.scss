@@ -15,6 +15,7 @@ body {
 @import "components/comments";  // コメント
 @import "components/user";  // ユーザー
 @import "components/bookmark"; // ブックマーク
+@import 'components/poll'; // アンケート
 
 // 各ページのスタイル
 @import "pages/home"; // トップページ

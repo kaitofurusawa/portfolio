@@ -1,0 +1,63 @@
+.poll-section {
+  margin-top: 1em;
+}
+
+.poll-result-list {
+  margin-top: 10px;
+}
+.poll-result-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.poll-bar-container {
+  flex: 1;
+  margin-right: 10px;
+  background: #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 28px;
+  position: relative;
+}
+.poll-bar {
+  background: #2196f3;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  font-weight: bold;
+  color: white;
+  transition: width 0.3s;
+}
+.poll-percent {
+  width: 42px;
+  text-align: right;
+  margin-right: 5px;
+  font-weight: bold;
+}
+.poll-count {
+  color: #555;
+  font-size: 0.9em;
+}
+.user-choice .poll-bar {
+  background: #43a047 !important; // 自分の投票は緑
+}
+.most-voted .poll-bar {
+  border: 2px solid #ffd700;
+}
+.your-vote {
+  color: #43a047;
+  font-size: 0.85em;
+  margin-left: 6px;
+}
+.max-label {
+  color: #ffd700;
+  font-size: 0.85em;
+  margin-left: 6px;
+  font-weight: bold;
+}
+.poll-total-votes {
+  color: #888;
+  font-size: 0.95em;
+  margin-top: 4px;
+}

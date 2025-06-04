@@ -24,6 +24,16 @@ class BoardsController < ApplicationController
   end
 
   def create
+      # アンケート項目が全て空ならpoll_attributesをparamsから除去
+    if params[:board][:poll_attributes] &&
+        params[:board][:poll_attributes][:question].blank? &&
+        (
+          params[:board][:poll_attributes][:poll_options_attributes].blank? ||
+          params[:board][:poll_attributes][:poll_options_attributes].each_value.all? { |opt| opt[:content].blank? }
+        )
+      params[:board].delete(:poll_attributes)
+    end
+
     @board = current_user.boards.build(board_params)
     if @board.save
       redirect_to @board, notice: t("boards.create.success")
@@ -34,6 +44,17 @@ class BoardsController < ApplicationController
   end
 
   def update
+      # 質問も選択肢も空の場合はpollを削除
+      if params[:board][:poll_attributes] &&
+        params[:board][:poll_attributes][:question].blank? &&
+        (
+          params[:board][:poll_attributes][:poll_options_attributes].blank? ||
+          params[:board][:poll_attributes][:poll_options_attributes].each_value.all? { |opt| opt[:content].blank? }
+        )
+       @board.poll&.destroy
+       params[:board].delete(:poll_attributes) # 空のまま渡さない
+     end
+
     if @board.update(board_params)
       redirect_to @board, notice: t("boards.update.success")
     else

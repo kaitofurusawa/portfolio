@@ -1,0 +1,42 @@
+<% poll ||= board.poll %>
+<% if poll.present? %>
+  <div class="poll-section" style="margin-top: 1em;">
+    <h3 class="poll-question"><%= t('boards.poll.question') %>: <%= poll.question %></h3>
+    <% if current_user && !current_user.votes.exists?(poll_option: poll.poll_options) %>
+      <%= form_with url: votes_path, method: :post, scope: :vote do |f| %>
+        <% poll.poll_options.each do |option| %>
+          <div>
+            <%= f.radio_button :poll_option_id, option.id %>
+            <%= option.content %>
+          </div>
+        <% end %>
+        <%= f.submit t('buttons.vote'), class: "vote-btn" %>
+      <% end %>
+    <% else %>
+      <% total_votes = poll.poll_options.sum { |opt| opt.votes.count } %>
+      <% user_vote_option_id = current_user&.votes&.find_by(poll_option_id: poll.poll_options.pluck(:id))&.poll_option_id %>
+      <div class="poll-result-list">
+        <% poll.poll_options.each do |option| %>
+          <% vote_count = option.votes.count %>
+          <% percent = total_votes > 0 ? ((vote_count.to_f / total_votes) * 100).round : 0 %>
+          <% is_user_vote = user_vote_option_id == option.id %>
+          <div class="poll-result-item <%= 'user-choice' if is_user_vote %>">
+            <div class="poll-bar-container">
+              <div class="poll-bar" style="width: <%= percent %>%;">
+                <span class="poll-option-text"><%= option.content %></span>
+              </div>
+            </div>
+            <span class="poll-percent"><%= percent %>%</span>
+            <span class="poll-count">（<%= vote_count %>票）</span>
+            <% if is_user_vote %>
+              <span class="your-vote"><%= t('polls.your_vote') %></span>
+            <% end %>
+          </div>
+        <% end %>
+        <div class="poll-total-votes">
+          <%= t('polls.total_votes', count: total_votes) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

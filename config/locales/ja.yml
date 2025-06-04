@@ -144,7 +144,7 @@ ja:
     unauthorized: "この操作を行う権限がありません"
     poll:
       legend: "アンケート（任意）"
-      question: "アンケートの質問"
+      question: "質問"
       option: "選択肢"
 
   comments:
@@ -189,6 +189,12 @@ ja:
     confirm_unbookmark: "お気に入り解除しますか？"
 
   polls:
+    your_vote: "あなたの投票"
     total_votes: "合計%{count}票"
     errors:
       at_least_two_options: "選択肢は2つ以上入力してください"
+
+  votes:
+    create:
+      success: "投票しました"
+      failure: "投票できませんでした"

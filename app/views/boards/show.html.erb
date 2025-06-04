@@ -26,40 +26,9 @@
     <p><%= simple_format(@board.content) %></p>
   </div>
 
-  <!-- ▼アンケートがある場合に表示 -->
-  <% if @board.poll.present? %>
-    <div class="poll-section" style="margin-top: 1em;">
-      <h3 class="poll-question"><%= t('boards.poll.question') %>: <%= @board.poll.question %></h3>
-
-      <% if current_user && !current_user.votes.exists?(poll_option: @board.poll.poll_options) %>
-        <%= form_with url: votes_path, method: :post, local: true do |f| %>
-          <% @board.poll.poll_options.each do |option| %>
-            <div>
-              <%= f.radio_button :poll_option_id, option.id %>
-              <%= option.content %>
-            </div>
-          <% end %>
-          <%= f.submit t('buttons.vote'), class: "vote-btn" %>
-        <% end %>
-      <% else %>
-        <!-- 投票済み or 未ログイン時は集計結果を表示する -->
-        <% total_votes = @board.poll.poll_options.sum { |opt| opt.votes.count } %>
-        <% @board.poll.poll_options.each do |option| %>
-          <% vote_count = option.votes.count %>
-          <% percent = total_votes > 0 ? ((vote_count.to_f / total_votes) * 100).round : 0 %>
-          <div class="poll-result-bar" style="margin: 4px 0; background: #f2f2f2;">
-            <span><%= option.content %></span>
-            <div style="display: inline-block; height: 10px; width: <%= percent %>% ; background: #2196f3;"></div>
-            <span>（<%= vote_count %>票, <%= percent %>%）</span>
-          </div>
-        <% end %>
-        <div style="font-size:0.9em; color:#666;">
-          <%= t('polls.total_votes', count: total_votes) %>
-        </div>
-      <% end %>
-    </div>
+  <%= turbo_frame_tag "poll_#{@board.poll.id}" do %>
+    <%= render "poll_frame", board: @board, poll: @board.poll, current_user: current_user %>
   <% end %>
-  <!-- ▲ここまで -->
 
   <% if current_user == @board.user %>
     <div class="button-group">
