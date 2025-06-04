@@ -81,6 +81,7 @@ ja:
     submit_comment: "コメントする"
     add_option: "選択肢を追加"
     delete_option: "選択肢を削除"
+    vote: "投票する"
 
   titles:
     login: "ログイン"
@@ -188,5 +189,6 @@ ja:
     confirm_unbookmark: "お気に入り解除しますか？"
 
   polls:
+    total_votes: "合計%{count}票"
     errors:
       at_least_two_options: "選択肢は2つ以上入力してください"

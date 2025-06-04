@@ -26,6 +26,9 @@ Rails.application.routes.draw do
   # パスワードリセット関連（sorcery用）
   resources :password_resets, only: [:new, :create, :edit, :update]
 
+  # 投票関連
+  resources :votes, only: [:create]
+
   # 利用規約とプライバシーポリシー
   get 'terms', to: 'static_pages#terms'
   get 'privacy', to: 'static_pages#privacy'

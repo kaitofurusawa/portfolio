@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :bookmarked_boards, through: :bookmarks, source: :board
+  has_many :votes
+  has_many :voted_poll_options, through: :votes, source: :poll_option
 
   has_secure_token :reset_password_token
 
