@@ -1,5 +1,10 @@
 <h2 class="section-title"><%= t('titles.boards') %></h2>
 
+<div class="sort-tabs" style="margin-bottom: 1em;">
+  <%= link_to '新着順', boards_path(sort: 'new'), class: (@sort == 'new' ? 'active-sort' : '') %> |
+  <%= link_to '閲覧数順', boards_path(sort: 'view'), class: (@sort == 'view' ? 'active-sort' : '') %>
+</div>
+
 <div class="board-grid">
   <% @boards.each do |board| %>
     <div class="board-card">

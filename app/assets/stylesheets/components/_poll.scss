@@ -1,7 +1,91 @@
 .poll-section {
   margin-top: 1em;
+  padding: 1.2em 0 1.5em 0;
 }
 
+.poll-question {
+  font-size: 1.13em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.poll-form {
+  margin-bottom: 1.2em;
+}
+
+.poll-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 1.3em;
+}
+
+.poll-radio {
+  display: none;
+}
+
+.poll-option-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.3em 1.2em;
+  background: #f6fafd;
+  border: 2px solid #bbb;
+  border-radius: 12px;
+  font-size: 1.08em;
+  font-weight: 500;
+  color: #222;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  user-select: none;
+  position: relative;
+}
+
+.poll-radio:checked + .poll-option-text,
+.poll-option-box:has(.poll-radio:checked) {
+  background: linear-gradient(90deg, #4caf50 0%, #2196f3 100%);
+  color: #fff;
+  border-color: #2196f3;
+}
+
+.poll-option-box:hover {
+  border-color: #2196f3;
+  background: #e8f0fe;
+  color: #111;
+}
+
+.poll-option-text {
+  width: 100%;
+  text-align: center;
+  font-size: 1em;
+  padding: 0.6em 0;
+  pointer-events: none;
+}
+
+/* 投票ボタン */
+.vote-btn {
+  background: linear-gradient(90deg, #4caf50 0%, #2196f3 100%);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.6em 2.5em;
+  font-size: 1.1em;
+  font-weight: bold;
+  box-shadow: 0 4px 18px rgba(33, 150, 243, 0.13);
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 1em;
+}
+
+.vote-btn:hover {
+  opacity: 0.85;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 24px rgba(33, 150, 243, 0.17);
+}
+
+/* 結果表示エリア */
 .poll-result-list {
   margin-top: 10px;
 }
@@ -40,7 +124,7 @@
   font-size: 0.9em;
 }
 .user-choice .poll-bar {
-  background: #43a047 !important; // 自分の投票は緑
+  background: #43a047 !important; /* 自分の投票は緑 */
 }
 .most-voted .poll-bar {
   border: 2px solid #ffd700;

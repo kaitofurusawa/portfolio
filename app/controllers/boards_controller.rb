@@ -9,12 +9,23 @@ class BoardsController < ApplicationController
   end
 
   def index
-    @boards = Board.order(created_at: :desc).page(params[:page]).per(20) # 1ページに20件表示
+    sort = params[:sort] || 'new' # デフォルトは新着順
+
+    @boards =
+      case sort
+      when 'view'
+        Board.order(views_count: :desc)
+      else
+        Board.order(created_at: :desc)
+      end
+
+    @boards = @boards.page(params[:page]).per(20) # ページネーションはこの1行でOK
   end
 
   def show
     @board = Board.find(params[:id])
     @comments = @board.comments.order(created_at: :asc)
+    @board.increment!(:views_count)
   end
 
   def edit

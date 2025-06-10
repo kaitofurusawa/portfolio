@@ -1,15 +1,17 @@
 <% poll ||= board.poll %>
 <% if poll.present? %>
-  <div class="poll-section" style="margin-top: 1em;">
+  <div class="poll-section">
     <h3 class="poll-question"><%= t('boards.poll.question') %>: <%= poll.question %></h3>
     <% if current_user && !current_user.votes.exists?(poll_option: poll.poll_options) %>
-      <%= form_with url: votes_path, method: :post, scope: :vote do |f| %>
-        <% poll.poll_options.each do |option| %>
-          <div>
-            <%= f.radio_button :poll_option_id, option.id %>
-            <%= option.content %>
-          </div>
-        <% end %>
+      <%= form_with url: votes_path, method: :post, scope: :vote, html: { class: "poll-form" } do |f| %>
+        <div class="poll-options-list">
+          <% poll.poll_options.each do |option| %>
+            <label class="poll-option-box">
+              <%= f.radio_button :poll_option_id, option.id, class: "poll-radio" %>
+              <span class="poll-option-text"><%= option.content %></span>
+            </label>
+          <% end %>
+        </div>
         <%= f.submit t('buttons.vote'), class: "vote-btn" %>
       <% end %>
     <% else %>
