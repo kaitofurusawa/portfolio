@@ -11,15 +11,25 @@ class BoardsController < ApplicationController
   def index
     sort = params[:sort] || 'new' # デフォルトは新着順
 
+    # 1. 検索条件
+    @boards =
+      if params[:q].present?
+        Board.where("title LIKE :kw OR content LIKE :kw", kw: "%#{params[:q]}%")
+      else
+        Board.all
+      end
+
+    # 2. ソート
     @boards =
       case sort
       when 'view'
-        Board.order(views_count: :desc)
+        @boards.order(views_count: :desc)
       else
-        Board.order(created_at: :desc)
+        @boards.order(created_at: :desc)
       end
 
-    @boards = @boards.page(params[:page]).per(20) # ページネーションはこの1行でOK
+    # 3. ページネーション
+    @boards = @boards.page(params[:page]).per(20)
   end
 
   def show

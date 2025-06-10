@@ -1,9 +1,27 @@
 <h2 class="section-title"><%= t('titles.boards') %></h2>
 
-<div class="sort-tabs" style="margin-bottom: 1em;">
-  <%= link_to '新着順', boards_path(sort: 'new'), class: (@sort == 'new' ? 'active-sort' : '') %> |
-  <%= link_to '閲覧数順', boards_path(sort: 'view'), class: (@sort == 'view' ? 'active-sort' : '') %>
+<!-- ▼ソート（左）＆検索フォーム（右）を横並びに -->
+<div class="search-and-sort" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5em;">
+  <!-- ソートタブ（左） -->
+  <div class="sort-tabs">
+    <%= link_to '新着順', boards_path(sort: 'new', q: params[:q]), class: (@sort == 'new' ? 'active-sort' : '') %> |
+    <%= link_to '閲覧数順', boards_path(sort: 'view', q: params[:q]), class: (@sort == 'view' ? 'active-sort' : '') %>
+  </div>
+  <!-- キーワード検索フォーム（右） -->
+  <div class="board-search-form">
+    <%= form_with url: boards_path, method: :get, local: true do %>
+      <input type="text" name="q" value="<%= params[:q] %>" placeholder="キーワード検索" />
+      <button type="submit">検索</button>
+    <% end %>
+  </div>
 </div>
+<!-- ▲ここまで -->
+
+<% if params[:q].present? %>
+  <div class="search-result-info" style="margin-bottom: 1em;">
+    「<%= params[:q] %>」の検索結果
+  </div>
+<% end %>
 
 <div class="board-grid">
   <% @boards.each do |board| %>

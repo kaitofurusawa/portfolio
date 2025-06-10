@@ -115,3 +115,10 @@
   font-weight: bold;
   text-decoration: underline;
 }
+
+.search-and-sort {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5em;
+}
