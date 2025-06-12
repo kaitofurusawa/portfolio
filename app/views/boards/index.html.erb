@@ -10,14 +10,23 @@
   <!-- キーワード検索フォーム（右） -->
   <div class="board-search-form" style="position: relative;">
     <%= form_with url: boards_path, method: :get, local: true do %>
-      <input type="text" id="board-search-input" name="q" value="<%= params[:q] %>" placeholder="キーワード検索" autocomplete="off" />
+      <input
+        type="text"
+        name="q"
+        value="<%= params[:q] %>"
+        placeholder="タイトル・本文・ユーザー名で検索（スペース区切りAND）"
+        autocomplete="off"
+        id="board-search-input"
+      />
       <button type="submit">検索</button>
     <% end %>
     <!-- オートコンプリート候補を表示するための領域 -->
-    <ul id="autocomplete-list" style="position: absolute; background: white; border: 1px solid #ccc; z-index: 10; width: 100%;"></ul>
+    <ul
+      id="autocomplete-list"
+      style="position: absolute; background: white; border: 1px solid #ccc; z-index: 10; width: 100%; list-style: none; padding-left: 0;"
+    ></ul>
   </div>
 </div>
-<!-- ▲ここまで -->
 
 <% if params[:q].present? %>
   <div class="search-result-info" style="margin-bottom: 1em;">

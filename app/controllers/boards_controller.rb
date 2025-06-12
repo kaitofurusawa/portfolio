@@ -11,13 +11,17 @@ class BoardsController < ApplicationController
   def index
     sort = params[:sort] || 'new' # デフォルトは新着順
 
-    # 1. 検索条件
-    @boards =
-      if params[:q].present?
-        Board.where("title LIKE :kw OR content LIKE :kw", kw: "%#{params[:q]}%")
-      else
-        Board.all
+    @boards = Board.joins(:user) # 最初にJOINしておく
+
+    if params[:q].present?
+      keywords = params[:q].strip.split(/[[:space:]]+/)
+      keywords.each_with_index do |word, i|
+        @boards = @boards.where(
+          "(boards.title LIKE :kw OR boards.content LIKE :kw OR users.name LIKE :kw)",
+          kw: "%#{word}%"
+        )
       end
+    end
 
     # 2. ソート
     @boards =
