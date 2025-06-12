@@ -122,3 +122,14 @@
   align-items: center;
   margin-bottom: 1.5em;
 }
+
+#autocomplete-list:empty {
+  display: none;
+  list-style: none;
+  padding-left: 0; /* 左の余白も消したい場合 */
+}
+
+#autocomplete-list {
+  list-style: none;
+  padding-left: 0; /* 左の余白も消したい場合 */
+}

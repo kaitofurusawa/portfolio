@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   resources :boards do
     resources :comments, only: [ :create, :update, :destroy, :edit ]
     resource :bookmark, only: [:create, :destroy], module: :boards
+    collection do
+      get :autocomplete
+    end
   end
 
   # パスワードリセット関連（sorcery用）

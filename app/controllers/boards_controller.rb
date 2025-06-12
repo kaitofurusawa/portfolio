@@ -92,6 +92,12 @@ class BoardsController < ApplicationController
     end
   end
 
+  def autocomplete
+    keyword = params[:term] # フロントから送るパラメータ
+    boards = Board.where("title LIKE ?", "%#{keyword}%").limit(10)
+    render json: boards.pluck(:title)
+  end
+
   private
   def set_board
     @board = Board.find(params[:id])
