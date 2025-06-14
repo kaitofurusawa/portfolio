@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  require 'open-uri'
+
   def new
     @user = User.new
   end
@@ -19,5 +21,20 @@ class SessionsController < ApplicationController
   def destroy
     logout
     redirect_to root_path, notice: t("sessions.destroy.success")
+  end
+  def omniauth
+    auth = request.env['omniauth.auth']
+    user = User.find_or_create_by(email: auth.info.email) do |u|
+      u.name = auth.info.name
+      u.password = SecureRandom.hex(10)
+      u.profile = auth.info.description if u.respond_to?(:profile) && auth.info.respond_to?(:description)
+      u.profile_image.attach(
+        io: URI.open(auth.info.image),
+        filename: 'profile.jpg'
+      ) if auth.info.image.present?
+    end
+  
+    session[:user_id] = user.id
+    redirect_to root_path, notice: "Googleログインしました！"
   end
 end

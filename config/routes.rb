@@ -36,6 +36,10 @@ Rails.application.routes.draw do
   get 'terms', to: 'static_pages#terms'
   get 'privacy', to: 'static_pages#privacy'
 
+  # Omniauth認証（Google OAuth2）
+  get '/auth/:provider/callback', to: 'sessions#omniauth'
+  get '/auth/failure', to: redirect('/')
+
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end

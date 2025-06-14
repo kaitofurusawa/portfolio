@@ -54,6 +54,11 @@ gem "bootsnap", require: false
 # ActiveStorageのドライバ
 gem "aws-sdk-s3", require: false
 
+# 認証とセキュリティ
+gem 'omniauth'
+gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-google-oauth2'
+
 group :development, :test do
   gem "brakeman", require: false
   gem "rubocop-rails-omakase", require: false
