@@ -31,6 +31,8 @@ class User < ApplicationRecord
             content_type: { in: %w[image/png image/jpeg image/webp], message: I18n.t('errors.messages.content_type_invalid') },
             size: { less_than: 5.megabytes, message: I18n.t('errors.messages.too_large', count: 5) }
 
+  validates :provider, uniqueness: { scope: :uid }, allow_blank: true
+
   # パスワードリセット用
   def generate_reset_password_token!
     self.reset_password_token = SecureRandom.urlsafe_base64

@@ -22,19 +22,36 @@ class SessionsController < ApplicationController
     logout
     redirect_to root_path, notice: t("sessions.destroy.success")
   end
+
   def omniauth
     auth = request.env['omniauth.auth']
-    user = User.find_or_create_by(email: auth.info.email) do |u|
-      u.name = auth.info.name
-      u.password = SecureRandom.hex(10)
-      u.profile = auth.info.description if u.respond_to?(:profile) && auth.info.respond_to?(:description)
-      u.profile_image.attach(
-        io: URI.open(auth.info.image),
-        filename: 'profile.jpg'
-      ) if auth.info.image.present?
+    email = auth.info.email
+    provider = auth.provider
+    uid = auth.uid
+
+    user = User.find_by(email: email)
+
+    if user
+      user.update(provider: provider, uid: uid) if user.provider.blank? || user.uid.blank?
+    else
+      user = User.new(
+        email: email,
+        name: auth.info.name,
+        password: SecureRandom.hex(10),
+        provider: provider,
+        uid: uid
+      )
+      user.profile = auth.info.description if user.respond_to?(:profile) && auth.info.respond_to?(:description)
+      if auth.info.image.present? && user.respond_to?(:profile_image)
+        user.profile_image.attach(
+          io: URI.open(auth.info.image),
+          filename: 'profile.jpg'
+        )
+      end
+      user.save!
     end
-  
+
     session[:user_id] = user.id
-    redirect_to root_path, notice: "Googleログインしました！"
+    redirect_to root_path, notice: "#{provider.titleize}でログインしました！"
   end
 end
