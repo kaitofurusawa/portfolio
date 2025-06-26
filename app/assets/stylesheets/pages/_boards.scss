@@ -133,3 +133,58 @@
   list-style: none;
   padding-left: 0; /* 左の余白も消したい場合 */
 }
+
+.board-search-form {
+  width: 100%;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: 0;
+
+  form {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .custom-search-input {
+    flex: 1;
+    font-size: 1.1rem;
+    padding: 12px 16px;
+    border: 2px solid #d1d5db;
+    border-radius: 1.5em;
+    background: #f9fafb;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+
+    &:focus {
+      border-color: #91b7fa;
+      outline: none;
+      background: #fff;
+    }
+  }
+
+  .cute-search-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 18px;
+    font-size: 1.1rem;
+    color: #fff;
+    background: linear-gradient(90deg, #7c93f5 0%, #a5c8fa 100%);
+    border: none;
+    border-radius: 2em;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(124, 147, 245, 0.13);
+    transition: background 0.2s, transform 0.1s;
+
+    i {
+      font-size: 1.2em;
+      margin-right: 3px;
+    }
+
+    &:hover {
+      background: linear-gradient(90deg, #6387e2 0%, #89b9ee 100%);
+      transform: translateY(-1px) scale(1.04);
+    }
+  }
+}

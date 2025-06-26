@@ -146,6 +146,13 @@ ja:
       legend: "アンケート（任意）"
       question: "質問"
       option: "選択肢"
+    sort:
+      new: "新着順"
+      view: "閲覧数順"
+    search:
+      placeholder: "タイトル・本文・ユーザー名で検索"
+      button: "検索"
+      result: "「%{keyword}」の検索結果"
 
   comments:
     create:

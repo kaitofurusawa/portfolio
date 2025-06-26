@@ -1,26 +1,25 @@
 <h2 class="section-title"><%= t('titles.boards') %></h2>
 
-<!-- ▼ソート（左）＆検索フォーム（右）を横並びに -->
 <div class="search-and-sort" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5em;">
-  <!-- ソートタブ（左） -->
   <div class="sort-tabs">
-    <%= link_to '新着順', boards_path(sort: 'new', q: params[:q]), class: (@sort == 'new' ? 'active-sort' : '') %> |
-    <%= link_to '閲覧数順', boards_path(sort: 'view', q: params[:q]), class: (@sort == 'view' ? 'active-sort' : '') %>
+    <%= link_to t('boards.sort.new'), boards_path(sort: 'new', q: params[:q]), class: (@sort == 'new' ? 'active-sort' : '') %> |
+    <%= link_to t('boards.sort.view'), boards_path(sort: 'view', q: params[:q]), class: (@sort == 'view' ? 'active-sort' : '') %>
   </div>
-  <!-- キーワード検索フォーム（右） -->
   <div class="board-search-form" style="position: relative;">
     <%= form_with url: boards_path, method: :get, local: true do %>
       <input
         type="text"
         name="q"
         value="<%= params[:q] %>"
-        placeholder="タイトル・本文・ユーザー名で検索（スペース区切りAND）"
+        placeholder="<%= t('boards.search.placeholder') %>"
         autocomplete="off"
         id="board-search-input"
+        class="custom-search-input"
       />
-      <button type="submit">検索</button>
+      <button type="submit" class="cute-search-btn">
+        <i class="fa fa-search"></i> <%= t('boards.search.button') %>
+      </button>
     <% end %>
-    <!-- オートコンプリート候補を表示するための領域 -->
     <ul
       id="autocomplete-list"
       style="position: absolute; background: white; border: 1px solid #ccc; z-index: 10; width: 100%; list-style: none; padding-left: 0;"
@@ -30,7 +29,7 @@
 
 <% if params[:q].present? %>
   <div class="search-result-info" style="margin-bottom: 1em;">
-    「<%= params[:q] %>」の検索結果
+    <%= t('boards.search.result', keyword: params[:q]) %>
   </div>
 <% end %>
 
