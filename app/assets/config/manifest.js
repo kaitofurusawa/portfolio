@@ -5,3 +5,4 @@
 //= link user_icon.png
 //= link comments.js
 //= link autocomplete.js
+//= link controllers/application.js
