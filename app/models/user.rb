@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :votes
   has_many :voted_poll_options, through: :votes, source: :poll_option
 
-  has_secure_token :reset_password_token
+  #has_secure_token :reset_password_token
 
   # バリデーション
   validates :name, presence: true, length: { maximum: 30 }
