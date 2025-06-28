@@ -4,43 +4,73 @@
   margin-top: 30px;
   flex-wrap: wrap;
 
-  .page {
-    padding: 8px 16px;
-    background-color: #f8f8f8;
-    color: #555;
-    text-decoration: none;
-    border: 1px solid #ccc;
-    transition: all 0.3s;
-    border-radius: 0;  // くっつけるため
-    margin-left: -1px; // ボーダー重なり防止
+  // 数字や矢印など通常ページ
+  span.page,
+  span.first,
+  span.prev,
+  span.next,
+  span.last {
+    display: inline-block;
+    margin-left: -1px;
+    box-sizing: border-box;
 
-    &:first-child {
-      border-top-left-radius: 6px;
-      border-bottom-left-radius: 6px;
-      margin-left: 0;
-    }
+    a {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: #f8f8f8;
+      color: #555;
+      text-decoration: none !important;
+      border: 1px solid #ccc;
+      border-radius: 0;
+      transition: all 0.3s;
+      cursor: pointer;
+      box-sizing: border-box;
 
-    &:last-child {
-      border-top-right-radius: 6px;
-      border-bottom-right-radius: 6px;
-    }
-
-    &:hover {
-      background-color: #3498db;
-      color: #fff;
-      border-color: #3498db;
-    }
-
-    &.current {
-      background-color: #3498db;
-      color: #fff;
-      pointer-events: none;
-      font-weight: bold;
+      &:hover {
+        background-color: #3498db;
+        color: #fff;
+        border-color: #3498db;
+      }
     }
   }
 
+  // 現在ページのみ
+  span.page.current {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #3498db;
+    color: #fff;
+    border: 1px solid #3498db;
+    border-radius: 0;
+    font-weight: bold;
+    pointer-events: none;
+    cursor: default;
+    margin-left: -1px;
+    box-sizing: border-box;
+  }
+
+  // 最初・最後の角丸
+  span.page:first-child a,
+  span.page:first-child.current {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    margin-left: 0;
+  }
+  span.page:last-child a,
+  span.page:last-child.current {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+
+  // gap（...）
   .gap {
+    display: inline-block;
     padding: 8px 16px;
     color: #999;
+    background: none;
+    border: none;
+    margin-left: -1px;
+    box-sizing: border-box;
+    cursor: default;
   }
 }

@@ -1,15 +1,25 @@
-<div class="pagination">
-  <% if @boards.prev_page %>
-    <%= link_to '«', url_for(page: 1), class: 'page' %>
-    <%= link_to '‹', url_for(page: @boards.prev_page), class: 'page' %>
-  <% end %>
-
-  <% (1..@boards.total_pages).each do |page| %>
-    <%= link_to page, url_for(page: page), class: "page#{' current' if page == @boards.current_page}" %>
-  <% end %>
-
-  <% if @boards.next_page %>
-    <%= link_to '›', url_for(page: @boards.next_page), class: 'page' %>
-    <%= link_to '»', url_for(page: @boards.total_pages), class: 'page' %>
-  <% end %>
-</div>
+<%# The container tag
+  - available local variables
+    current_page:  a page object for the currently displayed page
+    total_pages:   total number of pages
+    per_page:      number of items to fetch per page
+    remote:        data-remote
+    paginator:     the paginator that renders the pagination tags inside
+-%>
+<%= paginator.render do -%>
+  <nav class="pagination" role="navigation" aria-label="pager">
+    <%= first_page_tag unless current_page.first? %>
+    <%= prev_page_tag unless current_page.first? %>
+    <% each_page do |page| -%>
+      <% if page.display_tag? -%>
+        <%= page_tag page %>
+      <% elsif !page.was_truncated? -%>
+        <%= gap_tag %>
+      <% end -%>
+    <% end -%>
+    <% unless current_page.out_of_range? %>
+      <%= next_page_tag unless current_page.last? %>
+      <%= last_page_tag unless current_page.last? %>
+    <% end %>
+  </nav>
+<% end -%>

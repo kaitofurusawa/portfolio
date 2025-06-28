@@ -16,7 +16,7 @@
         id="board-search-input"
         class="custom-search-input"
       />
-      <button type="submit" class="cute-search-btn">
+      <button type="submit" class="search-btn">
         <i class="fa fa-search"></i> <%= t('boards.search.button') %>
       </button>
     <% end %>
@@ -35,30 +35,7 @@
 
 <div class="board-grid">
   <% @boards.each do |board| %>
-    <div class="board-card">
-      <%= image_tag(board.image.attached? ? url_for(board.image) : 'noimage.png', alt: board.title, class: "board-thumbnail") %>
-      <h3><%= link_to board.title, board_path(board) %></h3>
-
-      <div class="board-author">
-        <%= link_to user_path(board.user), class: "user-link" do %>
-          <div class="user-info">
-            <% if board.user.profile_image.attached? %>
-              <%= image_tag board.user.profile_image, class: "user-icon" %>
-            <% else %>
-              <%= image_tag 'user_icon.png', class: "user-icon" %>
-            <% end %>
-            <span class="user-name"><%= board.user.name %></span>
-          </div>
-        <% end %>
-      </div>
-
-      <!-- ▼ここにブックマークボタンを追加 -->
-      <div id="bookmark-button-<%= board.id %>" data-turbo-frame="bookmark-button-<%= board.id %>">
-        <%= render partial: "boards/bookmark", locals: { board: board, current_user: current_user } %>
-      </div>
-      <!-- ▲ここまで -->
-
-    </div>
+    <%= render "boards/board_card", board: board, current_user: current_user %>
   <% end %>
 </div>
 

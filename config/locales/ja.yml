@@ -125,8 +125,16 @@ ja:
     show:
       no_profile: "未設定"
       no_boards: "投稿がありません。"
+      all_boards_link: "すべての投稿を見る"
+      all_bookmarks_link: "すべてのブックマークを見る"
       boards_title: "投稿した何切る"
       bookmarks_title: "ブックマーク"
+      no_bookmarks: "ブックマークした投稿はありません。"
+    boards:
+      title: "投稿した何切る一覧"
+      no_boards: "投稿がありません。"
+    bookmarks:
+      title: "ブックマーク一覧"
       no_bookmarks: "ブックマークした投稿はありません。"
 
   boards:
@@ -205,3 +213,16 @@ ja:
     create:
       success: "投票しました"
       failure: "投票できませんでした"
+
+  # --- 外部認証ボタン ---
+  oauth:
+    google_login: "Googleでログイン"
+    google_signup: "Googleで新規登録"
+
+  views:
+    pagination:
+      first: "最初"
+      last: "最後"
+      previous: "前"
+      next: "次"
+      truncate: "..."

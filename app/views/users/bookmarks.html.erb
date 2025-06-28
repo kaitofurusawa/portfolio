@@ -1,0 +1,13 @@
+<h2 class="section-title"><%= t('users.bookmarks.title', default: "ブックマーク一覧") %></h2>
+<% if @bookmarked_boards.any? %>
+  <div class="board-grid">
+    <% @bookmarked_boards.each do |board| %>
+      <%= render "boards/board_card", board: board, current_user: current_user %>
+    <% end %>
+  </div>
+  <div class="pagination">
+    <%= paginate @bookmarked_boards %>
+  </div>
+<% else %>
+  <p><%= t('users.bookmarks.no_bookmarks', default: "ブックマークした投稿はありません。") %></p>
+<% end %>

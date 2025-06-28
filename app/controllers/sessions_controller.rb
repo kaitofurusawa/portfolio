@@ -52,6 +52,6 @@ class SessionsController < ApplicationController
     end
 
     session[:user_id] = user.id
-    redirect_to root_path, notice: "#{provider.titleize}でログインしました！"
+    redirect_to root_path, notice: t('sessions.create.success')
   end
 end

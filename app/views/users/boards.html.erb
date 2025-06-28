@@ -1,0 +1,13 @@
+<h2><%= t('users.boards.title') %></h2>
+<% if @boards.any? %>
+  <div class="board-grid">
+    <% @boards.each do |board| %>
+      <%= render "boards/board_card", board: board, current_user: current_user %>
+    <% end %>
+  </div>
+  <div class="pagination">
+    <%= paginate @boards %>
+  </div>
+<% else %>
+  <p><%= t('users.boards.no_boards') %></p>
+<% end %>
