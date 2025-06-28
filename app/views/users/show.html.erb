@@ -25,63 +25,34 @@
   <p><%= @user.profile.presence || t('users.show.no_profile') %></p>
 </div>
 
+<!-- ブックマーク（最新5件） -->
 <div class="user-bookmarked-boards" style="margin-top: 2em;">
   <h3><%= t('users.show.bookmarks_title') %></h3>
-  <% if @bookmarked_boards.any? %>
+  <% if @recent_bookmarked_boards.any? %>
     <div class="board-grid">
-      <% @bookmarked_boards.each do |board| %>
-        <div class="board-card">
-          <%= image_tag(board.image.attached? ? url_for(board.image) : 'noimage.png', alt: board.title, class: "board-thumbnail") %>
-          <h4><%= link_to board.title, board_path(board) %></h4>
-          <p class="board-description">
-            <%= board.respond_to?(:description) ? board.description.truncate(50) : "" %>
-          </p>
-          <div class="board-author">
-            <% if board.user.profile_image.attached? %>
-              <%= image_tag board.user.profile_image, class: "user-icon" %>
-            <% else %>
-              <%= image_tag 'user_icon.png', class: "user-icon" %>
-            <% end %>
-            <span class="user-name"><%= board.user.name %></span>
-          </div>
-          <!-- ブックマークボタン -->
-          <div id="bookmark-button-<%= board.id %>" data-turbo-frame="bookmark-button-<%= board.id %>">
-            <%= render partial: "boards/bookmark", locals: { board: board, current_user: current_user } %>
-          </div>
-        </div>
+      <% @recent_bookmarked_boards.each do |board| %>
+        <%= render "boards/board_card", board: board, current_user: current_user %>
       <% end %>
+    </div>
+    <div class="all-link-wrap">
+      <%= link_to t('users.show.all_bookmarks_link'), bookmarks_user_path(@user), class: "all-link" %>
     </div>
   <% else %>
     <p><%= t('users.show.no_bookmarks') %></p>
   <% end %>
 </div>
 
-<!-- 何切る投稿一覧（カードデザイン） -->
+<!-- 投稿（最新5件） -->
 <div class="user-boards" style="margin-top: 2em;">
   <h3><%= t('users.show.boards_title') %></h3>
-  <% if @boards.any? %>
+  <% if @recent_boards.any? %>
     <div class="board-grid">
-      <% @boards.each do |board| %>
-        <div class="board-card">
-          <%= image_tag(board.image.attached? ? url_for(board.image) : 'noimage.png', alt: board.title, class: "board-thumbnail") %>
-          <h4><%= link_to board.title, board_path(board) %></h4>
-          <p class="board-description">
-            <%= board.respond_to?(:description) ? board.description.truncate(50) : "" %>
-          </p>
-          <div class="board-author">
-            <% if board.user.profile_image.attached? %>
-              <%= image_tag board.user.profile_image, class: "user-icon" %>
-            <% else %>
-              <%= image_tag 'user_icon.png', class: "user-icon" %>
-            <% end %>
-            <span class="user-name"><%= board.user.name %></span>
-          </div>
-          <!-- ブックマークボタン -->
-          <div id="bookmark-button-<%= board.id %>" data-turbo-frame="bookmark-button-<%= board.id %>">
-            <%= render partial: "boards/bookmark", locals: { board: board, current_user: current_user } %>
-          </div>
-        </div>
+      <% @recent_boards.each do |board| %>
+        <%= render "boards/board_card", board: board, current_user: current_user %>
       <% end %>
+    </div>
+    <div class="all-link-wrap">
+      <%= link_to t('users.show.all_boards_link'), boards_user_path(@user), class: "all-link" %>
     </div>
   <% else %>
     <p><%= t('users.show.no_boards') %></p>
