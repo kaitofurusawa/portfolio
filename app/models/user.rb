@@ -36,16 +36,16 @@ class User < ApplicationRecord
   # パスワードリセット用
   def generate_reset_password_token!
     self.reset_password_token = SecureRandom.urlsafe_base64
-    self.password_reset_sent_at = Time.zone.now
+    self.reset_password_sent_at = Time.zone.now
     save!(validate: false)
   end
 
   def clear_reset_password_token!
-    update!(reset_password_token: nil, password_reset_sent_at: nil)
+    update!(reset_password_token: nil, reset_password_sent_at: nil)
   end
 
   def reset_password_token_valid?
-    password_reset_sent_at && password_reset_sent_at > 2.hours.ago
+    reset_password_sent_at && reset_password_sent_at > 2.hours.ago
   end
 
   private
