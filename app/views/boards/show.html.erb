@@ -26,9 +26,12 @@
     <p><%= simple_format(@board.content) %></p>
   </div>
 
-  <%= turbo_frame_tag "poll_#{@board.poll.id}" do %>
-    <%= render "poll_frame", board: @board, poll: @board.poll, current_user: current_user %>
+  <% if @board.poll.present? %>
+    <%= turbo_frame_tag "poll_#{@board.poll.id}" do %>
+      <%= render "poll_frame", board: @board, poll: @board.poll, current_user: current_user %>
+    <% end %>
   <% end %>
+
 
   <% if current_user == @board.user %>
     <div class="button-group">
