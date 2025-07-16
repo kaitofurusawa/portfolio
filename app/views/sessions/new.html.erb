@@ -1,7 +1,7 @@
 <h1 class="login-title"><%= t('titles.login') %></h1>
 
 <div class="login-form-container">
-  <%= form_with url: login_path, local: true do |f| %>
+  <%= form_with url: login_path, local: true, id: "login_form" do |f| %>
     <div class="form-group">
       <%= f.label :email, t('labels.email') %>
       <%= f.text_field :email, class: "form-input #{'input-error' if @user&.errors[:email].any?}", value: @user&.email %>

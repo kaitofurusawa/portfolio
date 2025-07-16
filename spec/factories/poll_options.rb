@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :poll_option do
-    content { "MyString" }
-    poll { nil }
+    association :poll
+    content { "選択肢の内容" }
   end
 end

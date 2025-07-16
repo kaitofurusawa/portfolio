@@ -138,6 +138,8 @@ ja:
       no_bookmarks: "ブックマークした投稿はありません。"
 
   boards:
+    index:
+      no_results: "該当する投稿はありません"
     create:
       success: "投稿が完了しました"
       failure: "投稿に失敗しました"

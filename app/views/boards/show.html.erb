@@ -18,7 +18,7 @@
 
   <!-- ▼ここにブックマークボタンを追加 -->
   <div id="bookmark-button-<%= @board.id %>" data-turbo-frame="bookmark-button-<%= @board.id %>">
-    <%= render partial: "boards/bookmark", locals: { board: @board, current_user: current_user } %>
+    <%= render_bookmark_button(@board) %>
   </div>
   <!-- ▲ここまで -->
 

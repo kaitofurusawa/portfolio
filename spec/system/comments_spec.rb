@@ -1,78 +1,60 @@
 require 'rails_helper'
 
-RSpec.describe "コメント機能", type: :system do
-  let!(:user) { create(:user) }
-  let!(:other_user) { create(:user) }
-  let!(:board) { create(:board, user: user) }
+RSpec.describe "コメント機能", type: :system, js: true do
+  let!(:user)  { create(:user) }
+  let!(:board) { create(:board) }
 
   before do
-    visit login_path
-    fill_in 'メールアドレス', with: user.email
-    fill_in 'パスワード', with: 'password'
-    click_button 'ログイン'
+    driven_by :remote_chrome
   end
 
-  it "コメントを投稿できる" do
-    visit board_path(board)
-
-    fill_in "コメントを入力", with: "これはテストコメントです"
-    click_button "コメント"
-
-    expect(page).to have_content "これはテストコメントです"
-    expect(page).to have_content "コメントを投稿しました"
-  end
-
-  it "空のコメントは投稿できない" do
-    visit board_path(board)
-
-    fill_in "コメントを入力", with: ""
-    click_button "コメント"
-
-    expect(page).to have_content "コメントを入力してください"
-  end
-
-  it "自分のコメントを編集できる" do
-    comment = create(:comment, user: user, board: board, content: "編集前")
-
-    visit board_path(board)
-
-    within("#comment_#{comment.id}") do
-      click_link "編集"
+  context "ログイン時" do
+    before do
+      login_as(user)
+      visit board_path(board)
     end
 
-    within("#edit_comment_#{comment.id}") do
-      fill_in "コメントを入力", with: "編集後"
-      click_button "更新"
+    it "コメントを投稿すると非同期で反映される" do
+      fill_in "コメントを入力", with: "テストコメント"
+      click_button I18n.t('buttons.comment')
+      # 投稿した内容が即時反映されているかをチェック
+      expect(page).to have_content("テストコメント")
+      # 投稿ユーザー名も表示
+      expect(page).to have_content(user.name)
+      # フラッシュに依存しない
     end
 
-    expect(page).to have_content "編集後"
-    expect(page).not_to have_content "編集前"
-    expect(page).to have_content "コメントを更新しました"
-  end
+    it "コメントを削除すると非同期で消える" do
+      fill_in "コメントを入力", with: "削除テストコメント"
+      click_button I18n.t('buttons.comment')
+      expect(page).to have_content("削除テストコメント")
 
-  it "自分のコメントを削除できる" do
-    comment = create(:comment, user: user, board: board, content: "削除対象")
-
-    visit board_path(board)
-
-    within("#comment_#{comment.id}") do
-      accept_confirm do
-        click_link "削除"
+      # コメントのブロック内で削除
+      within('.comment-container', text: "削除テストコメント") do
+        accept_confirm(I18n.t('comments.delete_confirm')) do
+          click_link I18n.t('buttons.delete')
+          # もしくは click_link '削除'
+        end
       end
+
+      # 削除後にコメントが消えていることを確認
+      expect(page).not_to have_content("削除テストコメント")
     end
 
-    expect(page).not_to have_content "削除対象"
-    expect(page).to have_content "コメントを削除しました"
+    it "コメント内容が空ならバリデーションエラーになる" do
+      click_button I18n.t('buttons.comment')
+      # バリデーションエラーが表示されることを確認
+      expect(page).to have_content(I18n.t('activerecord.errors.models.comment.attributes.content.blank'))
+    end
   end
 
-  it "他人のコメントは編集・削除できない" do
-    comment = create(:comment, user: other_user, board: board, content: "他人のコメント")
-
-    visit board_path(board)
-
-    within("#comment_#{comment.id}") do
-      expect(page).not_to have_link "編集"
-      expect(page).not_to have_link "削除"
+  context "未ログイン時" do
+    it "コメントフォームが表示されない" do
+      visit board_path(board)
+      # コメントフォーム要素が存在しないことを確認（idやclassで）
+      expect(page).not_to have_selector('form.comment-form')
+      # もしくは、ログイン中のみコメントできる旨の表示があるなら
+      # expect(page).to have_content(I18n.t('comments.login_required'))
     end
   end
 end

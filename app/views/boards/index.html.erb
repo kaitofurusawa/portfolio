@@ -39,6 +39,10 @@
   <% end %>
 </div>
 
+<% if @boards.empty? %>
+  <p class="no-results"><%= t('boards.index.no_results') %></p>
+<% end %>
+
 <div class="pagination">
   <%= paginate @boards %>
 </div>
