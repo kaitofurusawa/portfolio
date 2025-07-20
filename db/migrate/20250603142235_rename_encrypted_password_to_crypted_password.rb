@@ -3,4 +3,3 @@ class RenameEncryptedPasswordToCryptedPassword < ActiveRecord::Migration[7.0]
     rename_column :users, :encrypted_password, :crypted_password
   end
 end
-

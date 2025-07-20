@@ -54,23 +54,22 @@ RSpec.describe "掲示板一覧 検索・ソート機能", type: :system, js: tr
 
   describe "ソート機能" do
     it "デフォルトで新着順になっている" do
-      # board2（1日前）→ board1（2日前）→ board3（3日前）の順
       titles = all(".board-card h3").map(&:text)
-      expect(titles).to eq(["検索対象記事", "初投稿", "複数ワード テスト"])
+      expect(titles).to eq([ "検索対象記事", "初投稿", "複数ワード テスト" ])
     end
 
     it "閲覧数順でソートできる" do
       click_link "閲覧数順"
       expect(page).to have_selector(".board-card h3", text: "検索対象記事") # ←ここでリロード完了をwait
       titles = all(".board-card h3").map(&:text)
-      expect(titles).to eq(["検索対象記事", "初投稿", "複数ワード テスト"])
+      expect(titles).to eq([ "検索対象記事", "初投稿", "複数ワード テスト" ])
     end
 
     it "新着順にソートし直せる" do
       click_link "閲覧数順"
       click_link "新着順"
       titles = all(".board-card h3").map(&:text)
-      expect(titles).to eq(["検索対象記事", "初投稿", "複数ワード テスト"])
+      expect(titles).to eq([ "検索対象記事", "初投稿", "複数ワード テスト" ])
     end
   end
 

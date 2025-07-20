@@ -1,6 +1,5 @@
-# app/controllers/boards/bookmarks_controller.rb
 class Boards::BookmarksController < ApplicationController
-  before_action :require_login # sorceryのメソッド
+  before_action :require_login
   before_action :set_board
 
   def create

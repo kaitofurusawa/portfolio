@@ -4,7 +4,6 @@ require_relative '../config/environment'
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 
-# Supportディレクトリ以下を読み込み
 Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |f| require f }
 
 begin
@@ -14,7 +13,6 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 
 RSpec.configure do |config|
-  # ↓★★★【ここが超重要】★★★
   # system spec（Capybara + Selenium）用
   config.use_transactional_fixtures = false
 
@@ -42,6 +40,4 @@ RSpec.configure do |config|
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.filter_rails_from_backtrace!
-
-  # 他に必要な設定があればここへ
 end

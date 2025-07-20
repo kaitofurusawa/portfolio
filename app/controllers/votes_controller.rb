@@ -18,7 +18,7 @@ class VotesController < ApplicationController
       end
       return
     end
-  
+
     vote = current_user.votes.build(poll_option_id: poll_option_id)
     if vote.save
       respond_to do |format|
@@ -30,11 +30,9 @@ class VotesController < ApplicationController
             locals: { board: @poll.board, poll: @poll, current_user: current_user }
           )
         end
-        # format.htmlはテスト時や直アクセス時用に置いておいてもOK
       end
     else
       redirect_back fallback_location: root_path, alert: "投票に失敗しました"
     end
   end
-  
 end

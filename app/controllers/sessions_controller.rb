@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  require 'open-uri'
+  require "open-uri"
 
   def new
     @user = User.new
@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
   end
 
   def omniauth
-    auth = request.env['omniauth.auth']
+    auth = request.env["omniauth.auth"]
     email = auth.info.email
     provider = auth.provider
     uid = auth.uid
@@ -45,13 +45,13 @@ class SessionsController < ApplicationController
       if auth.info.image.present? && user.respond_to?(:profile_image)
         user.profile_image.attach(
           io: URI.open(auth.info.image),
-          filename: 'profile.jpg'
+          filename: "profile.jpg"
         )
       end
       user.save!
     end
 
     session[:user_id] = user.id
-    redirect_to root_path, notice: t('sessions.create.success')
+    redirect_to root_path, notice: t("sessions.create.success")
   end
 end

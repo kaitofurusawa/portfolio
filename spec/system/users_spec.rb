@@ -20,7 +20,6 @@ RSpec.describe "ユーザー登録", type: :system, js: true do
   it "入力不足の場合はエラーになる（異常系）" do
     visit new_user_path
 
-    # 名前だけ未入力で登録
     fill_in "メールアドレス", with: "signup_error@example.com"
     fill_in "パスワード", with: "password"
     fill_in "パスワード（確認）", with: "password"
@@ -44,7 +43,6 @@ RSpec.describe "ユーザー登録", type: :system, js: true do
   end
 
   it "既存のメールアドレスでは登録できない（異常系）" do
-    # 事前に同じアドレスでユーザーを作成
     User.create!(name: "既存ユーザー", email: "signup_dup@example.com", password: "password", password_confirmation: "password")
 
     visit new_user_path

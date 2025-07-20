@@ -2,14 +2,11 @@ source "https://rubygems.org"
 
 ruby "3.2.2"
 
-# Rails 本体
 gem "rails", "~> 8.0.2"
 
-# Sprockets を追加
 gem "sprockets-rails", "~> 3.5"
 gem "sprockets", "~> 4.2"
 
-# PostgreSQL
 gem "pg", "~> 1.5"
 
 gem "puma", "~> 6.6"
@@ -55,9 +52,9 @@ gem "bootsnap", require: false
 gem "aws-sdk-s3", require: false
 
 # 認証とセキュリティ
-gem 'omniauth'
-gem 'omniauth-rails_csrf_protection'
-gem 'omniauth-google-oauth2'
+gem "omniauth"
+gem "omniauth-rails_csrf_protection"
+gem "omniauth-google-oauth2"
 
 group :development, :test do
   gem "brakeman", require: false
@@ -69,7 +66,7 @@ end
 group :development do
   gem "pry-rails"
   gem "web-console"
-  gem 'letter_opener_web'
+  gem "letter_opener_web"
 end
 
 group :test do

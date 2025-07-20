@@ -27,7 +27,7 @@ RSpec.describe Board, type: :model do
 
   it "画像が未添付でも保存できる" do
     board = build(:board)
-    board.image.purge # 画像を削除
+    board.image.purge
     expect(board).to be_valid
   end
 

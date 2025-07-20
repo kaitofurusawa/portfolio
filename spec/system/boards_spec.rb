@@ -5,7 +5,7 @@ RSpec.describe "掲示板（何切る投稿）", type: :system, js: true do
 
   before do
     driven_by :remote_chrome
-    login_as(user)   # マクロでログイン（support/login_macros.rb推奨）
+    login_as(user)
   end
 
   it "新規投稿ができる" do
@@ -55,7 +55,6 @@ RSpec.describe "掲示板（何切る投稿）", type: :system, js: true do
     attach_file "何切る画像", Rails.root.join("spec/fixtures/sample.jpg")
     click_button "投稿"
     expect(page).to have_content "投稿が完了しました"
-    # 画像が表示されてることの確認（alt属性や画像URLなどで検証）
     expect(page).to have_selector("img")
   end
 end

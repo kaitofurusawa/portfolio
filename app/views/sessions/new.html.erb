@@ -25,7 +25,7 @@
     <%= f.submit t('buttons.login'), class: "login-btn" %>
   <% end %>
 
-  <!-- ここからGoogleログインボタン（公式デザイン） -->
+  <!-- Googleログインボタン（公式デザイン） -->
   <%= button_to '/auth/google_oauth2', method: :post, class: 'gsi-material-button', data: { turbo: false } do %>
     <div class="gsi-material-button-content-wrapper">
       <div class="gsi-material-button-icon">

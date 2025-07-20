@@ -12,14 +12,12 @@ document.addEventListener('turbo:load', function() {
   let addBtn = document.getElementById('add-option-btn');
   if (!pollOptions || !addBtn) return;
 
-  // 追加ボタンのイベントリスナーを多重登録しないため、毎回クローンでリセット
   const newAddBtn = addBtn.cloneNode(true);
   addBtn.parentNode.replaceChild(newAddBtn, addBtn);
-  addBtn = newAddBtn; // クローン後のボタンを再取得
+  addBtn = newAddBtn;
 
   let idx = pollOptions.querySelectorAll('.poll-option-fields').length;
 
-  // 追加ボタン
   addBtn.addEventListener('click', function(e) {
     e.preventDefault();
     const template = document.getElementById('poll-option-template').innerHTML;
@@ -28,7 +26,6 @@ document.addEventListener('turbo:load', function() {
     idx++;
   });
 
-  // 削除ボタン（イベントデリゲートでOK！）
   pollOptions.addEventListener('click', function(e) {
     if (e.target.classList.contains('delete-option-btn')) {
       e.preventDefault();

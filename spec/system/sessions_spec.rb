@@ -16,8 +16,8 @@ RSpec.describe "ユーザーのログイン・ログアウト", type: :system, j
     end
 
     expect(page).to have_content "ログインに成功しました"
-    visit user_path(user) # ここでマイページに遷移
-    expect(page).to have_button "ログアウト" # ←リンクじゃなくボタン！
+    visit user_path(user)
+    expect(page).to have_button "ログアウト"
     expect(page).to have_content user.name
   end
 
@@ -31,7 +31,7 @@ RSpec.describe "ユーザーのログイン・ログアウト", type: :system, j
 
     visit user_path(user)
 
-    expect(page).to have_selector("button.logout-btn") # ここでボタン確認
+    expect(page).to have_selector("button.logout-btn")
     click_button "ログアウト"
 
     expect(page).to have_content "ログアウトしました"

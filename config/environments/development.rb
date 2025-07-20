@@ -31,7 +31,7 @@ Rails.application.configure do
   # アップロードされたファイルをローカルファイルシステムに保存します（オプションは config/storage.yml を参照）。
   config.active_storage.service = :local
 
-  # 
+  #
   config.action_mailer.raise_delivery_errors = true
 
   # テンプレートの変更を即時に反映させます。

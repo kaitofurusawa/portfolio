@@ -10,7 +10,7 @@
       <% end %>
     </div>
 
-    <!-- プロフィール編集欄追加ここから -->
+    <!-- プロフィール編集欄 -->
     <div class="form-group">
       <%= f.label :profile, t('activerecord.attributes.user.profile') %>
       <%= f.text_area :profile, rows: 4, class: "form-input #{'input-error' if @user.errors[:profile].any?}" %>
@@ -18,7 +18,6 @@
         <div class="error-message"><%= @user.errors[:profile].first %></div>
       <% end %>
     </div>
-    <!-- プロフィール編集欄追加ここまで -->
 
     <div class="form-group">
       <%= f.label :email, t('activerecord.attributes.user.email') %>

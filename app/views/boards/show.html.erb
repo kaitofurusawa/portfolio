@@ -16,11 +16,9 @@
 
   <h2 class="section-title board-title"><%= @board.title %></h2>
 
-  <!-- ▼ここにブックマークボタンを追加 -->
   <div id="bookmark-button-<%= @board.id %>" data-turbo-frame="bookmark-button-<%= @board.id %>">
     <%= render_bookmark_button(@board) %>
   </div>
-  <!-- ▲ここまで -->
 
   <div class="board-content">
     <p><%= simple_format(@board.content) %></p>

@@ -9,9 +9,9 @@ class BoardsController < ApplicationController
   end
 
   def index
-    sort = params[:sort] || 'new' # デフォルトは新着順
+    sort = params[:sort] || "new" # デフォルトは新着順
 
-    @boards = Board.joins(:user) # 最初にJOINしておく
+    @boards = Board.joins(:user)
 
     if params[:q].present?
       keywords = params[:q].strip.split(/[[:space:]]+/)
@@ -23,16 +23,16 @@ class BoardsController < ApplicationController
       end
     end
 
-    # 2. ソート
+    # ソート
     @boards =
       case sort
-      when 'view'
+      when "view"
         @boards.order(views_count: :desc)
       else
         @boards.order(created_at: :desc)
       end
 
-    # 3. ページネーション
+    # ページネーション
     @boards = @boards.page(params[:page]).per(20)
   end
 
@@ -44,12 +44,10 @@ class BoardsController < ApplicationController
 
   def edit
     @board.build_poll unless @board.poll
-    # 選択肢が1個もなければ2つはbuildしておく
     @board.poll.poll_options.build while @board.poll.poll_options.size < 2
   end
 
   def create
-      # アンケート項目が全て空ならpoll_attributesをparamsから除去
     if params[:board][:poll_attributes] &&
         params[:board][:poll_attributes][:question].blank? &&
         (
@@ -69,16 +67,15 @@ class BoardsController < ApplicationController
   end
 
   def update
-      # 質問も選択肢も空の場合はpollを削除
       if params[:board][:poll_attributes] &&
         params[:board][:poll_attributes][:question].blank? &&
-        (
-          params[:board][:poll_attributes][:poll_options_attributes].blank? ||
-          params[:board][:poll_attributes][:poll_options_attributes].each_value.all? { |opt| opt[:content].blank? }
-        )
-       @board.poll&.destroy
-       params[:board].delete(:poll_attributes) # 空のまま渡さない
-     end
+          (
+            params[:board][:poll_attributes][:poll_options_attributes].blank? ||
+            params[:board][:poll_attributes][:poll_options_attributes].each_value.all? { |opt| opt[:content].blank? }
+          )
+        @board.poll&.destroy
+        params[:board].delete(:poll_attributes)
+      end
 
     if @board.update(board_params)
       redirect_to @board, notice: t("boards.update.success")
@@ -97,7 +94,7 @@ class BoardsController < ApplicationController
   end
 
   def autocomplete
-    keyword = params[:term] # フロントから送るパラメータ
+    keyword = params[:term]
     boards = Board.where("title LIKE ?", "%#{keyword}%").limit(10)
     render json: boards.pluck(:title)
   end
@@ -118,7 +115,7 @@ class BoardsController < ApplicationController
       :title, :content, :image,
       poll_attributes: [
         :question,
-        poll_options_attributes: [:content, :_destroy]
+        poll_options_attributes: [ :content, :_destroy ]
       ]
     )
   end

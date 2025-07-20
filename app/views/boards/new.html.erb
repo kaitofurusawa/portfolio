@@ -26,7 +26,7 @@
       <% end %>
     </div>
 
-    <!-- ▼アンケート（任意）ここから追加 -->
+    <!-- アンケート（任意） -->
     <fieldset>
       <legend><%= t('boards.poll.legend') %></legend>
       <div class="form-group">
@@ -54,7 +54,6 @@
       </div>
     </fieldset>
     <%= render "poll_option_fields" %>
-    <!-- ▲アンケートここまで -->
 
     <%= f.submit t('buttons.submit_post'), class: "edit-btn" %>
   <% end %>
