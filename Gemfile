@@ -7,7 +7,7 @@ gem "rails", "~> 8.0.2"
 gem "sprockets-rails", "~> 3.5"
 gem "sprockets", "~> 4.2"
 
-gem "pg", "~> 1.5"
+gem "pg", "~> 1.6"
 
 gem "puma", "~> 6.6"
 
